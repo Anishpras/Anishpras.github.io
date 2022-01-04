@@ -6,10 +6,6 @@ module.exports = {
       name: 'GitHub',
       url: 'https://github.com/anishpras',
     },
-    // {
-    //   name: 'Stackoverflow',
-    //   url: 'https://stackoverflow.com/users/9516173/soroush-chehresa',
-    // },
     {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/anishpras',
