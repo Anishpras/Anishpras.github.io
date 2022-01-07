@@ -1,11 +1,11 @@
 {
-  "name": "v4",
-  "description": "Personal Website V4",
+  "name": "anishpras portfolio",
+  "description": "Personal Website",
   "version": "1.0.0",
-  "author": "Brittany Chiang <brittany.chiang@gmail.com>",
+  "author": "Anish Prashun <anishprashun118@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/soroushchehresa/soroush"
+    "url": "https://github.com/Anishpras/Anishpras.github.io"
   },
   "keywords": [
     "gatsby"
