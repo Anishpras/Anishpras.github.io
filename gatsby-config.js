@@ -4,8 +4,8 @@ module.exports = {
   siteMetadata: {
     title: 'Anish Prashun',
     description:
-      'I\'m a software engineer who loves building client-side applications. Currently, I\'m focused on building smart TV web applications at SabaIdea using JavaScript technologies.',
-    siteUrl: 'https://soroush.js.org',
+      'An enthusiastic front-end software engineer with more than 4 years of experience in the field.',
+    siteUrl: 'https://www.anishprashun.me',
     image: '/og.png',
     twitterUsername: '@anishpras',
   },
@@ -21,8 +21,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'BrittanyChiang',
-        short_name: 'BrittanyChiang',
+        name: 'Anish Prashun',
+        short_name: 'Anish Prashun',
         start_url: '/',
         background_color: config.colors.darkNavy,
         theme_color: config.colors.navy,
