@@ -63,13 +63,16 @@ const Hero = () => {
   const three = <h3 className="big-heading">I build things for the web.</h3>;
   const four = (
     <p>
-      I'm a software engineer who loves building applications using JavaScript technologies. Currently, I'm focused on building web applications that serve millions of users in India at {' '}
-      <a href="https://www.sabaidea.com/en" target="_blank" rel="noreferrer">
+      I'm a software engineer who loves building applications using JavaScript technologies.
+      Currently, I'm focused on building web applications that serve millions of users in India at{' '}
+      <a href="https://www.cypheninnovations.com" target="_blank" rel="noreferrer">
         Cyphen Innovations
-      </a>. I'm also working on open-source projects in my free time, which can be seen on my {' '}
+      </a>
+      . I'm also working on open-source projects in my free time, which can be seen on my{' '}
       <a href="http://github.com/anishpras" target="_blank" rel="noreferrer">
         GitHub
-      </a>{' '} profile.
+      </a>{' '}
+      profile.
     </p>
   );
   const five = (

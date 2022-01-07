@@ -2,7 +2,7 @@
 date: '2020'
 title: 'PDF Corruptor'
 cover: './pdf.png'
-github: 'https://github.com/soroushchehresa/unsplash-wallpapers'
+github: 'https://github.com/pdf-corruptor'
 tech:
   - React.js
 
