@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.anishprashun.me/sitemap/sitemap-index.xml
+Host: https://www.anishprashun.me
