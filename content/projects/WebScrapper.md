@@ -10,6 +10,4 @@ tech:
 showInProjects: true
 ---
 
-I
-
 It is web scrapping tool.

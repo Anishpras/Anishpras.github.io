@@ -9,7 +9,8 @@ const IconLogo = () => (
         stroke="#000000"
         fill="#000000"
         fill-rule="nonzero"
-        points="39 0 0 22 0 67 39 90 78 68 78 23"></polygon>
+        points="39 0 0 22 0 67 39 90 78 68 78 23"
+      ></polygon>
       <text id="S" font-family="Helvetica" font-size="60" font-weight="normal" fill="#64FFDA">
         <tspan x="20" y="68">
           A

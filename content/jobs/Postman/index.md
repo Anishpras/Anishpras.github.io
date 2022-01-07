@@ -9,4 +9,3 @@ url: 'https://www.postman.com'
 
 - Tested and tried REST APIs for learning and implementing different requests.
 - Got the apprenticeship after successfully completing the task given.
-
