@@ -1,5 +1,5 @@
 ---
-date: '2020'
+date: '2022'
 title: 'Covid Statistics'
 cover: './covid.png'
 github: 'https://github.com/Anishpras/covid-stats'
