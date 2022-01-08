@@ -1,14 +1,12 @@
 ---
-date: '2022'
+date: '2020'
 title: 'Covid Statistics'
-ios: ''
-android: ''
+cover: './covid.png'
 github: 'https://github.com/Anishpras/covid-stats'
 tech:
   - TypeScript
   - Nodejs
   - Oclif
-company: 'Github'
 showInProjects: true
 ---
 
