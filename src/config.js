@@ -14,6 +14,10 @@ module.exports = {
       name: 'Twitter',
       url: 'https://twitter.com/APrashun',
     },
+    {
+      name: 'Npm',
+      url: 'https://www.npmjs.com/~anishpras',
+    },
   ],
 
   navLinks: [

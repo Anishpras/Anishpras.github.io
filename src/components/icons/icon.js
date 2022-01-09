@@ -16,6 +16,7 @@ import {
   IconPlayStore,
   IconStar,
   IconTwitter,
+  IconNpm,
 } from '@components/icons';
 
 const Icon = ({ name }) => {
@@ -26,6 +27,8 @@ const Icon = ({ name }) => {
       return <IconBookmark />;
     case 'Codepen':
       return <IconCodepen />;
+    case 'Npm':
+      return <IconNpm />;
     case 'External':
       return <IconExternal />;
     case 'Folder':
