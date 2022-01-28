@@ -7,10 +7,9 @@ module.exports = {
       'An enthusiastic front-end software engineer with more than 4 years of experience in the field.',
     siteUrl: 'https://www.anishprashun.me',
     image: '/og.png',
-    twitterUsername: '@anishpras',
+    twitterUsername: '@APrashun',
   },
   plugins: [
-    `gatsby-plugin-no-index`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
@@ -68,7 +67,7 @@ module.exports = {
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
-              rel: 'nofollow noopener noreferrer',
+              rel: 'follow noopener norefferer',
             },
           },
           {
@@ -148,12 +147,6 @@ module.exports = {
             },
           },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-45666519-2',
       },
     },
   ],
