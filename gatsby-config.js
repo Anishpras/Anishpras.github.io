@@ -67,7 +67,7 @@ module.exports = {
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
-              rel: 'follow noopener norefferer',
+              rel: null,
             },
           },
           {
