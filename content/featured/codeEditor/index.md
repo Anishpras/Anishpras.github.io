@@ -1,6 +1,6 @@
 ---
 date: '2022'
-title: 'Simple Code Editor'
+title: 'Pras Component Creator'
 cover: './code.png'
 external: 'https://component-creator-anish.netlify.app/'
 tech:
@@ -10,4 +10,4 @@ tech:
 showInProjects: true
 ---
 
-Code Editor for simple HTML CSS and Javascript for simple component creation and exporting it for HTML file.
+Code Editor for creating simple HTML CSS and Javascript pages and component and exporting it to HTML file.
