@@ -137,6 +137,8 @@ const About = () => {
     'Redux.js',
     'Recoil',
     'Redux-Saga',
+    'Rust',
+    'NextAuth',
     'Tailwind CSS',
     'Node.js',
     'Express.js',
@@ -145,6 +147,12 @@ const About = () => {
     'Webpack',
     'GraphQL',
     'Docker',
+    'Blockchain',
+    'AWS',
+    'Web3',
+    'Solidity',
+    'Solana',
+    'Ethereum',
     'Jest',
     'Enzyme',
     'Immutable.js',
@@ -168,10 +176,10 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              An enthusiastic front-end software engineer with more than 4 years of experience in
+              An enthusiastic full-stack software engineer and blockchain developer with more than 4 years of experience in
               the field. during the last four years, from front-end to mobile to desktop to back-end
               I have experience of developing a lot of applications using modern JavaScript
-              frameworks and libraries. As a developer who thrives in agile teams, I have worked
+              frameworks, Blockchain technologies and libraries. As a developer who thrives in agile teams, I have worked
               successfully with product owners, developers, and designers to achieve successful
               implementations.
             </p>
