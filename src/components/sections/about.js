@@ -151,14 +151,11 @@ const About = () => {
     'AWS',
     'Web3',
     'Solidity',
-    'Solana',
     'Ethereum',
     'Jest',
     'Enzyme',
-    'Immutable.js',
     'MySQL',
     'TypeORM',
-    'Sequelize',
     'Firebase',
     'MongoDB',
     'Mongoose',
@@ -176,12 +173,12 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              An enthusiastic full-stack software engineer and blockchain developer with more than 4 years of experience in
-              the field. during the last four years, from front-end to mobile to desktop to back-end
-              I have experience of developing a lot of applications using modern JavaScript
-              frameworks, Blockchain technologies and libraries. As a developer who thrives in agile teams, I have worked
-              successfully with product owners, developers, and designers to achieve successful
-              implementations.
+              An enthusiastic full-stack software engineer and blockchain developer with more than 4
+              years of experience in the field. during the last four years, from front-end to mobile
+              to desktop to back-end I have experience of developing a lot of applications using
+              modern JavaScript frameworks, Blockchain technologies and libraries. As a developer
+              who thrives in agile teams, I have worked successfully with product owners,
+              developers, and designers to achieve successful implementations.
             </p>
             <p>Here are a few technologies I've been working with recently:</p>
           </div>
