@@ -3,6 +3,7 @@ date: '2022'
 title: 'Peep-Peep'
 cover: './peep.png'
 external: 'https://peep-peep.vercel.app/'
+github: 'https://github.com/Anishpras/peep-peep'
 tech:
   - Next.js
   - React.js
