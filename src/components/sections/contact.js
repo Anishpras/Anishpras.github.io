@@ -39,6 +39,9 @@ const StyledContactSection = styled.section`
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
   }
+  .design-by {
+    margin-top: 50px;
+  }
 `;
 
 const Contact = () => {
@@ -67,6 +70,11 @@ const Contact = () => {
       <a className="email-link" href={`mailto:${email}`}>
         Say Hello
       </a>
+      <div className="design-by">
+        <a href="https://github.com/bchiang7/v4">
+          <p>Portfolio design by - Brittany Chiang</p>
+        </a>
+      </div>
     </StyledContactSection>
   );
 };
