@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Anish Prashun',
     description:
-      'An enthusiastic front-end software engineer with more than 4 years of experience in the field.',
+      'Software Development Engineer & Team Lead with 4+ years of experience building scalable web applications and AI-powered platforms. Currently leading development at XAMTAC CONSULTING LLC.',
     siteUrl: 'https://www.anishprashun.me',
     image: '/og.png',
     twitterUsername: '@APrashun',

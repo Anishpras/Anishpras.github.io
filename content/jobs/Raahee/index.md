@@ -1,11 +1,11 @@
 ---
-title: 'Web Development Intern'
+title: 'Full-Stack Developer Intern'
 company: 'Raahee'
-location: 'Delhi, India'
+location: 'New Delhi, India'
 type: 'Internship'
-range: 'May 2021 - Jul 2021'
+range: 'May 2021 - July 2021'
 url: 'https://www.raahee.in'
 ---
 
-- Developed Admin panel and event booking application integrated with a payment gateway using ReactJs and NodeJS.
-- Designed and developed a responsive user interface of the admin panel for the mental health professional.
+- Created a mental health platform for booking therapist sessions, processing 500+ daily transactions with optimized RESTful APIs
+- Designed a real-time availability calendar, reducing booking conflicts by 60% and streamlining the appointment process

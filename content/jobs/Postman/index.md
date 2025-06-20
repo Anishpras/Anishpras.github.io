@@ -2,10 +2,11 @@
 title: 'Postman Student Expert'
 company: 'Postman'
 location: 'India'
-type: 'Apprenticeship'
-range: 'Sep 2021 - Present'
+type: 'Certification'
+range: 'Sep 2021'
 url: 'https://www.postman.com'
 ---
 
-- Tested and tried REST APIs for learning and implementing different requests.
-- Got the apprenticeship after successfully completing the task given.
+- Achieved Postman Student Expert certification, showcasing proficiency in API development and testing
+- Completed comprehensive training in REST API testing and implementation
+- Demonstrated expertise in API documentation and testing methodologies

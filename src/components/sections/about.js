@@ -129,41 +129,33 @@ const About = () => {
   const skills = [
     'JavaScript (ES6+)',
     'TypeScript',
-    'React',
-    'React Native',
-    'Expo',
-    'Next.js',
-    'Remix',
-    'Redux.js',
-    'Recoil',
-    'Redux-Saga',
+    'Python',
     'Rust',
-    'NextAuth',
-    'Tailwind CSS',
+    'React.js',
+    'Next.js',
     'Node.js',
+    'Hono',
+    'Nest.js',
+    'Bun',
+    'tRPC',
     'Express.js',
-    'Socket.IO',
-    'Gatsby.js',
-    'Webpack',
+    'Django',
     'GraphQL',
-    'Docker',
-    'Blockchain',
-    'AWS',
-    'Web3',
-    'Solidity',
-    'Ethereum',
-    'Jest',
-    'Enzyme',
-    'MySQL',
-    'TypeORM',
-    'Firebase',
+    'PostgreSQL',
     'MongoDB',
-    'Mongoose',
     'Redis',
-    'SASS',
-    'HTML5',
-    'CSS3',
-    'Git',
+    'Elasticsearch',
+    'AWS',
+    'Azure',
+    'Docker',
+    'Jenkins',
+    'Prisma',
+    'Drizzle',
+    'Jest',
+    'Cypress',
+    'AI/ML',
+    'Blockchain',
+    'Solidity',
   ];
 
   return (
@@ -173,12 +165,17 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              An enthusiastic full-stack software engineer and blockchain developer with more than 4
-              years of experience in the field. during the last four years, from front-end to mobile
-              to desktop to back-end I have experience of developing a lot of applications using
-              modern JavaScript frameworks, Blockchain technologies and libraries. As a developer
-              who thrives in agile teams, I have worked successfully with product owners,
-              developers, and designers to achieve successful implementations.
+              I'm a Software Development Engineer & Team Lead with 4+ years of experience building
+              scalable web applications and AI-powered platforms. Currently leading development at
+              XAMTAC CONSULTING LLC, where I spearhead the creation of marketing ERP systems serving
+              1000+ daily active users.
+            </p>
+            <p>
+              My journey spans from architecting multi-vendor e-commerce platforms to developing
+              cutting-edge AI telecommunication systems. I've successfully led cross-functional
+              teams, mentored developers, and delivered high-impact projects that drive significant
+              business growth. I also contribute to the open-source community with production-ready
+              libraries.
             </p>
             <p>Here are a few technologies I've been working with recently:</p>
           </div>

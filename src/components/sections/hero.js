@@ -60,19 +60,21 @@ const Hero = () => {
 
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Anish Prashun.</h2>;
-  const three = <h3 className="big-heading">I build things for the web.</h3>;
+  const three = <h3 className="big-heading">I build scalable web applications with AI.</h3>;
   const four = (
     <p>
-      I'm a software engineer who loves building applications using JavaScript technologies.
-      Currently, I'm focused on building web applications that serve millions of users in India at{' '}
-      <a href="https://www.cypheninnovations.com" target="_blank" rel="noreferrer">
-        Cyphen Innovations
+      I'm a Software Development Engineer & Team Lead with 4+ years of experience building
+      high-performance web applications. Currently, I'm leading development of AI-powered marketing
+      platforms at{' '}
+      <a href="https://xamtac.com" target="_blank" rel="noreferrer">
+        XAMTAC CONSULTING LLC
       </a>
-      . I'm also working on open-source projects in my free time, which can be seen on my{' '}
-      <a href="http://github.com/anishpras" target="_blank" rel="noreferrer">
-        GitHub
+      , serving 1000+ daily active users. I also contribute to open-source projects and have created
+      production-ready libraries like{' '}
+      <a href="https://github.com/anishpras/rbac" target="_blank" rel="noreferrer">
+        RBAC systems
       </a>{' '}
-      profile.
+      for the JavaScript community.
     </p>
   );
   const five = (
