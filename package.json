@@ -1,18 +1,18 @@
 {
   "name": "anishprashun.me",
   "version": "0.1.0",
-  "description": "A minimal portfolio, component registry, and blog.",
+  "description": "A minimal portfolio, and blog.",
   "homepage": "https://anishprashun.me",
   "license": "MIT",
   "author": {
-    "name": "Nguyen Chanh Dai",
-    "email": "dai@anishprashun.me",
+    "name": "Anish Prashun",
+    "email": "anishprashun118@gmail.com",
     "url": "https://github.com/anishpras"
   },
   "contributors": [
     {
-      "name": "Nguyen Chanh Dai",
-      "email": "dai@anishprashun.me",
+      "name": "Anish Prashun",
+      "email": "anishprashun118@gmail.com",
       "url": "https://github.com/anishpras"
     }
   ],
