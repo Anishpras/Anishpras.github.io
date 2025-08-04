@@ -44,6 +44,7 @@ function AnishPrashunMarkMotion() {
       height="256"
       viewBox="0 0 512 256"
       fill="currentColor"
+      className="dark:text-[#64ffda]"
       initial={{
         opacity: 0,
         transform: "translateY(8px)",
