@@ -11,7 +11,7 @@ export const USER = {
     "React • TypeScript • Next.js • Node.js ",
   ],
   address: "Chicago, IL / Remote",
-  phoneNumber: "Kzk3OTcwNjE1MjEx", // E.164 format, base64 encoded
+  phoneNumber: "KzkxNzk3MDYxNTIxMQ==", // E.164 format, base64 encoded
   email: "YW5pc2hwcmFzaHVuMTE4QGdtYWlsLmNvbQ==", // base64 encoded
   website: "https://anishprashun.me",
   otherWebsites: [
