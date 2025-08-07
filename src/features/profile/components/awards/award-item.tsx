@@ -56,14 +56,14 @@ export function AwardItem({
                     orientation="vertical"
                   />
 
-                  <dl>
+                  {/* <dl>
                     <dt className="sr-only">Awarded in</dt>
                     <dd>
                       <time dateTime={dayjs(award.date).toISOString()}>
                         {dayjs(award.date).format("MM.YYYY")}
                       </time>
                     </dd>
-                  </dl>
+                  </dl> */}
 
                   <Separator
                     className="data-[orientation=vertical]:h-4"

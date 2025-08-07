@@ -5,7 +5,7 @@ export const AWARDS: Award[] = [
     id: "gold-medalist-2023",
     prize: "Gold Medalist in BTech CSE",
     title: "Gold Medalist",
-    date: "2023-08",
+
     grade: "University",
     description: "Gold Medalist in BTech CSE",
   },
@@ -14,9 +14,9 @@ export const AWARDS: Award[] = [
     prize: "Winner",
     title: "Smart India Hackathon 2023",
     date: "2023-08",
-    grade: "University",
+    grade: "National",
     description:
-      "- Led 6-member team to develop unified database for arbitration and mediation\n- Recognized by Ministry of Finance\n- Developed comprehensive solution for legal process digitization",
+      "- Led 6-member team to develop unified database for arbitration and mediation\n- Recognized by Ministry of Finance\n- Developed comprehensive solution for arbitration and mediation through single database platform.",
   },
   {
     id: "a-lab-copyright",

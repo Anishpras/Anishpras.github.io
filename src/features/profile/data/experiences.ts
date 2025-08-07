@@ -44,6 +44,40 @@ export const EXPERIENCES: Experience[] = [
     isCurrentEmployer: true,
   },
   {
+    id: "rebolt",
+    companyName: "Rebolt (via XAMTAC CONSULTING LLC)",
+    companyLogo: "/experience/rebolt.png",
+    positions: [
+      {
+        id: "rebolt-team-lead",
+        title: "Full Stack Team Lead",
+        employmentPeriod: {
+          start: "06.2025",
+        },
+        employmentType: "Full-time",
+        icon: "code",
+        description: `- Leading Xamtac team as Team Lead for Rebolt's full-stack development initiatives
+- Architecting and implementing comprehensive test suites to ensure code quality and reliability
+- Developing automated ads system for Rebolt's clients, optimizing campaign performance and ROI
+- Managing end-to-end full-stack development using modern technologies
+- Collaborating with cross-functional teams to deliver scalable solutions`,
+        skills: [
+          "Full Stack Development",
+          "Test Suite Development",
+          "Automated Ads Systems",
+          "Team Leadership",
+          "React",
+          "Node.js",
+          "TypeScript",
+          "Test Automation",
+          "Ad Tech",
+          "System Architecture",
+        ],
+        isExpanded: true,
+      },
+    ],
+  },
+  {
     id: "attack-capital",
     companyName: "Attack Capital - YCombinator (W22)",
     companyLogo: "/experience/ac.png",
@@ -53,7 +87,7 @@ export const EXPERIENCES: Experience[] = [
         title: "Full Stack Developer Lead & Performance Coach",
         employmentPeriod: {
           start: "08.2024",
-          end: "10.2024",
+          end: "11.2024",
         },
         employmentType: "Consultant",
         icon: "code",
@@ -90,7 +124,7 @@ export const EXPERIENCES: Experience[] = [
         id: "volte-frontend-dev",
         title: "Frontend Developer",
         employmentPeriod: {
-          start: "07.2022",
+          start: "07.2021",
           end: "09.2022",
         },
         employmentType: "Contract",
@@ -139,33 +173,33 @@ export const EXPERIENCES: Experience[] = [
       },
     ],
   },
-  {
-    id: "education",
-    companyName: "Education",
-    positions: [
-      {
-        id: "amity-university",
-        title: "Amity University, Patna",
-        employmentPeriod: {
-          start: "2019",
-          end: "2023",
-        },
-        icon: "education",
-        description: `- B.Tech in Computer Science
-- Smart India Hackathon Winner: Led 6-member team to develop unified database for arbitration and mediation, recognized by Ministry of Finance
-- Secured Intellectual Property Rights (Copyright) for A-Lab project, impacting 10,000+ students across India
-- Achieved Postman Student Expert certification, showcasing proficiency in API development and testing`,
-        skills: [
-          "Computer Science",
-          "Data Structures",
-          "Algorithms",
-          "Software Engineering",
-          "Database Systems",
-          "Team Leadership",
-          "Problem Solving",
-        ],
-        isExpanded: true,
-      },
-    ],
-  },
+  //   {
+  //     id: "education",
+  //     companyName: "Education",
+  //     positions: [
+  //       {
+  //         id: "amity-university",
+  //         title: "Amity University, Patna",
+  //         employmentPeriod: {
+  //           start: "2019",
+  //           end: "2023",
+  //         },
+  //         icon: "education",
+  //         description: `- B.Tech in Computer Science
+  // - Smart India Hackathon Winner: Led 6-member team to develop unified database for arbitration and mediation, recognized by Ministry of Finance
+  // - Secured Intellectual Property Rights (Copyright) for A-Lab project, impacting 10,000+ students across India
+  // - Achieved Postman Student Expert certification, showcasing proficiency in API development and testing`,
+  //         skills: [
+  //           "Computer Science",
+  //           "Data Structures",
+  //           "Algorithms",
+  //           "Software Engineering",
+  //           "Database Systems",
+  //           "Team Leadership",
+  //           "Problem Solving",
+  //         ],
+  //         isExpanded: true,
+  //       },
+  //     ],
+  //   },
 ];

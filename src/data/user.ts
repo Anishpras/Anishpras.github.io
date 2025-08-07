@@ -26,7 +26,7 @@ export const USER = {
     {
       title: "Software Development Engineer & Team Lead",
       company: "XAMTAC CONSULTING LLC",
-      website: "https://app.xamtac.com",
+      website: "https://xamtac.com",
     },
   ],
   about: `
