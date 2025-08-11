@@ -184,6 +184,7 @@ export const PROJECTS: Project[] = [
 - Real-time community features`,
     // logo: "https://assets.anishprashun.me/images/project-logos/poshmom.svg",
     isExpanded: true,
+    link: "https://poshmom.com",
   },
   {
     id: "talktales",
@@ -207,6 +208,7 @@ export const PROJECTS: Project[] = [
 - Advanced recommendation system`,
     // logo: "https://assets.anishprashun.me/images/project-logos/talktales.svg",
     isExpanded: true,
+    link: "https://www.talktalesconnect.com/",
   },
   {
     id: "openmic-ai",
@@ -234,6 +236,7 @@ export const PROJECTS: Project[] = [
 - Advanced NLP algorithms implementation`,
     // logo: "https://assets.anishprashun.me/images/project-logos/openmic.svg",
     isExpanded: true,
+    link: "https://www.openmic.ai/",
   },
   {
     id: "swades-ai",
