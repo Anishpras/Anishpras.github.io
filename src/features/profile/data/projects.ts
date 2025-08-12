@@ -161,6 +161,42 @@ export const PROJECTS: Project[] = [
     isExpanded: true,
   },
   {
+    id: "petai",
+    title: "PeTai - Personal Tutor AI",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.petai.academy/about-us",
+    skills: [
+      "AI/ML",
+      "Voice AI",
+      "Educational Technology",
+      "Multi-lingual Support",
+      "Adaptive Learning",
+      "Real-time Voice Interaction",
+      "Progress Tracking",
+      "Gamification",
+      "Computer Vision",
+      "NLP",
+      "Machine Learning Algorithms",
+      "React",
+      "Node.js",
+      "Python",
+    ],
+    description: `Revolutionizing education with AI-powered personalized tutoring. PeTai provides immersive, personalized learning experiences through cutting-edge artificial intelligence, making quality education accessible to everyone, anywhere, anytime.
+
+- Interactive AI tutoring with real-time voice conversations
+- Multi-lingual support (English, Hindi, Bengali, Marathi, and more)
+- Adaptive learning paths that adjust to individual learning styles
+- Comprehensive progress tracking with detailed analytics
+- Gamified learning experience for enhanced engagement
+- 24/7 availability for continuous learning support
+- Real-time generated diagrams and visual aids
+- Immediate feedback and performance optimization
+- B2B solutions for customizable training programs`,
+    isExpanded: true,
+  },
+  {
     id: "poshmom-ecommerce",
     title: "Poshmom E-Commerce",
     period: {
