@@ -53,6 +53,7 @@ export const EXPERIENCES: Experience[] = [
         title: "Full Stack Team Lead",
         employmentPeriod: {
           start: "06.2025",
+          end: "08-2025",
         },
         employmentType: "Full-time",
         icon: "code",
