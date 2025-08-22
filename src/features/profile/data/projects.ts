@@ -417,4 +417,356 @@ export const PROJECTS: Project[] = [
     // logo: "https://assets.anishprashun.me/images/project-logos/raahee.svg",
     // link: "https://raahee.com",
   },
+  {
+    id: "ac-pools",
+    title: "AC Pools",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.ac-pools.com",
+    skills: [
+      "WordPress",
+      "Custom Theme Development",
+      "PHP",
+      "MySQL",
+      "Responsive Design",
+      "SEO Optimization",
+      "Custom Pool Design",
+      "Construction Management",
+      "Client Communication",
+      "Quality Assurance",
+      "Project Management",
+    ],
+    description: `Built from scratch for Xamtac Consulting. A custom swimming pool builder in North Carolina, focused on quality craftsmanship, detail, and responsive customer service.
+
+- Custom pool design and construction
+- High-quality craftsmanship focus
+- Responsive customer service
+- North Carolina regional expertise`,
+    isExpanded: false,
+  },
+  {
+    id: "cntv",
+    title: "CNTV",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.cntvnow.com",
+    skills: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Video Streaming APIs",
+      "WebRTC",
+      "Live Video Production",
+      "Event Management",
+      "Brand Storytelling",
+      "Video Streaming",
+      "Content Creation",
+      "Multi-platform Broadcasting",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Provides comprehensive, versatile live video production services for events, brands, and organizations, aiming to bring experiences and stories to life.
+
+- Premier live video production services
+- Event coverage and broadcasting
+- Brand storytelling expertise
+- Multi-platform content delivery`,
+    isExpanded: false,
+  },
+  {
+    id: "provision-wealth-strategies",
+    title: "Provision Wealth Strategies",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.provisionws.com",
+    skills: [
+      "WordPress",
+      "Custom CMS",
+      "PHP",
+      "MySQL",
+      "Secure Form Processing",
+      "Tax Mitigation",
+      "Wealth Protection",
+      "Financial Planning",
+      "IRS Code Expertise",
+      "Business Advisory",
+      "Legal Structures",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Specializes in advanced tax mitigation and wealth protection strategies for business owners, utilizing IRS codes and legal structures beyond standard CPA services.
+
+- Advanced tax mitigation strategies
+- Wealth protection for business owners
+- IRS code optimization
+- Legal structure consulting`,
+    isExpanded: false,
+  },
+  {
+    id: "infinity-payment-systems",
+    title: "Infinity Payment Systems",
+    period: {
+      start: "2024",
+    },
+    skills: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Payment Gateway APIs",
+      "Stripe/Square Integration",
+      "PostgreSQL",
+      "Payment Processing",
+      "POS Solutions",
+      "Business Integrations",
+      "Financial Technology",
+      "Business Funding",
+      "Payment Terminals",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Offers honest, local, and affordable payment processing with a range of POS solutions and seamless business integrations. They also provide quick business funding and modern payment terminal solutions.
+
+- Affordable payment processing solutions
+- Modern POS system integration
+- Quick business funding services
+- Seamless business integrations`,
+    isExpanded: false,
+  },
+  {
+    id: "the-simplevisit",
+    title: "The SimpleVisit",
+    period: {
+      start: "2024",
+    },
+    skills: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "HIPAA Compliance",
+      "Video Conferencing API",
+      "PostgreSQL",
+      "Telehealth",
+      "Virtual Consultations",
+      "Medical Services",
+      "Online Prescriptions",
+      "Healthcare Technology",
+      "Patient Management",
+    ],
+    description: `Built from scratch for Xamtac Consulting. A telehealth service allowing patients in North Carolina to consult with their medical provider virtually. They offer urgent care, primary care, weight loss management, online prescriptions, and a streamlined virtual visit process for $84 per session.
+
+- Virtual medical consultations
+- Urgent and primary care services
+- Weight loss management programs
+- Online prescription services
+- $84 flat-rate pricing`,
+    isExpanded: false,
+  },
+  {
+    id: "casa-privee",
+    title: "Casa Privée",
+    period: {
+      start: "2024",
+    },
+    skills: [
+      "WordPress",
+      "Custom Theme Development",
+      "PHP",
+      "MySQL",
+      "Appointment Booking System",
+      "HIPAA Compliance",
+      "Concierge Medicine",
+      "Brain Health",
+      "Regenerative Medicine",
+      "Neuroinflammation",
+      "Holistic Wellness",
+      "VIP Healthcare",
+    ],
+    description: `Built from scratch for Xamtac Consulting. A Miami-based luxury concierge medical clinic focused on brain health, neuroinflammation, regenerative medicine, and VIP holistic wellness, integrating body, mind, and esthetic services under Dr. Bankole Johnson.
+
+- Luxury concierge medical services
+- Brain health and neuroinflammation focus
+- Regenerative medicine treatments
+- VIP holistic wellness programs
+- Integrated body, mind, and esthetic services`,
+    isExpanded: false,
+  },
+  {
+    id: "live-prints",
+    title: "Live Prints",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.liveprints.com",
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Booking System",
+      "Photo Gallery Integration",
+      "Event Photography",
+      "LED Photobooths",
+      "Ambient Lighting",
+      "360 Video Booth",
+      "Customer Service",
+      "Event Technology",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Specializes in event photography, elegant LED photobooths, and ambient lighting. Known for high-quality prints, white-glove customer service, and innovative experiences like the 360 LED video booth. A Hall of Fame vendor on TheKnot.com, serving events since 2008 with consistently high client praise.
+
+- Hall of Fame vendor on TheKnot.com
+- Elegant LED photobooths
+- 360 LED video booth technology
+- White-glove customer service
+- Serving events since 2008`,
+    isExpanded: false,
+  },
+  {
+    id: "fin-and-hooks",
+    title: "Fin & Hooks",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.finandhooks.com",
+    skills: [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Express.js",
+      "Multi-tenant Architecture",
+      "API Development",
+      "ERP Software",
+      "K-12 Education",
+      "Municipal Software",
+      "Payroll Systems",
+      "HR Management",
+      "School Nutrition",
+      "Employee Communication",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Provides ERP software designed for K-12 schools and municipalities, offering tools for payroll, HR, school nutrition tracking, and employee communication. Their service emphasizes easy implementation, custom programming, and reliable support rooted in decades of experience helping public sector administrators simplify operations.
+
+- ERP for K-12 schools and municipalities
+- Integrated payroll and HR systems
+- School nutrition tracking
+- Employee communication tools
+- Decades of public sector experience`,
+    isExpanded: false,
+  },
+  {
+    id: "naples-property-managements",
+    title: "Naples Property Managements",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.naplespropertymanagements.com",
+    skills: [
+      "WordPress",
+      "Custom CMS",
+      "PHP",
+      "MySQL",
+      "Property Listing System",
+      "MLS Integration",
+      "Property Management",
+      "Real Estate",
+      "Tenant Relations",
+      "Investment Management",
+      "Southwest Florida Market",
+      "Rental Optimization",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Offers comprehensive property management services in Naples, Florida. They focus on communication, expertise, tenant satisfaction, and maximizing rental value for investors, making property ownership hands-off and efficient in the Southwest Florida market.
+
+- Comprehensive property management in Naples, FL
+- Focus on tenant satisfaction
+- Rental value maximization
+- Hands-off property ownership
+- Southwest Florida market expertise`,
+    isExpanded: false,
+  },
+  {
+    id: "sclc",
+    title: "Sacramento Cultural & Linguistic Center",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.sclc.org",
+    skills: [
+      "WordPress",
+      "Multi-language Support",
+      "PHP",
+      "MySQL",
+      "Event Calendar Integration",
+      "Document Management",
+      "Cultural Services",
+      "Language Services",
+      "Immigration Support",
+      "Community Outreach",
+      "Refugee Services",
+      "Cultural Analysis",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Provides cultural and linguistic services for limited English proficiency (LEP) communities, refugees, and immigrants. Services include free and affordable language services, cultural analysis, coaching, speaking engagements, immigration consultations, and community support for Sacramento County.
+
+- Cultural and linguistic services for LEP communities
+- Free and affordable language services
+- Immigration consultation support
+- Refugee and immigrant assistance
+- Sacramento County community focus`,
+    isExpanded: false,
+  },
+  {
+    id: "tides-mental-health",
+    title: "Tides Mental Health",
+    period: {
+      start: "2024",
+    },
+    link: "https://www.tidesmentalhealth.com",
+    skills: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "HIPAA Compliance",
+      "Appointment Scheduling",
+      "PostgreSQL",
+      "Mental Health Services",
+      "Therapy",
+      "Counseling",
+      "Family Therapy",
+      "Child & Adolescent Services",
+      "Community Partnerships",
+    ],
+    description: `Built from scratch for Xamtac Consulting. An inclusive mental health clinic in Chicago offering compassionate therapy and counseling for individuals, children, adolescents, couples, and families. Services are client-centered, accessible, and focused on supporting growth and healing with expertise and community partnerships.
+
+- Inclusive mental health services in Chicago
+- Individual, couples, and family therapy
+- Child and adolescent specialization
+- Client-centered approach
+- Community partnership focus`,
+    isExpanded: false,
+  },
+  {
+    id: "drone-insurance-online",
+    title: "Drone Insurance Online",
+    period: {
+      start: "2024",
+    },
+    link: "https://droneinsuranceonline.com",
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Insurance APIs",
+      "PostgreSQL",
+      "Insurance Technology",
+      "Drone Coverage",
+      "Risk Assessment",
+      "Online Quoting",
+      "Policy Management",
+      "Claim Processing",
+      "Regulatory Compliance",
+    ],
+    description: `Built from scratch for Xamtac Consulting. Provides specialized insurance coverage for drones and drone operations. Offers comprehensive insurance solutions tailored for commercial and recreational drone users.
+
+- Specialized drone insurance coverage
+- Online quote generation system
+- Policy management platform
+- Commercial and recreational drone coverage
+- Regulatory compliance features`,
+    isExpanded: false,
+  },
 ];
