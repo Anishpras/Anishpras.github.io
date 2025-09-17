@@ -10,10 +10,10 @@ export const AWARDS: Award[] = [
     description: "Gold Medalist in BTech CSE",
   },
   {
-    id: "smart-india-hackathon-2023",
+    id: "smart-india-hackathon-2022",
     prize: "Winner",
-    title: "Smart India Hackathon 2023",
-    date: "2023-08",
+    title: "Smart India Hackathon 2022",
+    date: "2022-08",
     grade: "National",
     description:
       "- Led 6-member team to develop unified database for arbitration and mediation\n- Recognized by Ministry of Finance\n- Developed comprehensive solution for arbitration and mediation through single database platform.",
