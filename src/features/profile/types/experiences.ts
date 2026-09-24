@@ -22,6 +22,7 @@ export type ExperiencePosition = {
 export type Experience = {
   id: string;
   companyName: string;
+  companyUrl?: string;
   companyLogo?: string;
   positions: ExperiencePosition[];
   isCurrentEmployer?: boolean;

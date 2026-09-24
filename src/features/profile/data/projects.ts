@@ -2,6 +2,113 @@ import type { Project } from "../types/projects";
 
 export const PROJECTS: Project[] = [
   {
+    id: "assistable-platform",
+    title: "Assistable AI Platform",
+    period: {
+      start: "2026",
+    },
+    link: "https://assistable.ai",
+    skills: [
+      "Hybrid AI Agents",
+      "Voice AI",
+      "SMS / WhatsApp",
+      "OpenAPI",
+      "TypeScript SDK",
+      "Python SDK",
+      "MCP",
+      "CLI",
+      "Telnyx",
+      "Twilio",
+    ],
+    description:
+      "An omnichannel AI-agent platform that answers, qualifies, and books across voice, SMS, WhatsApp, and web chat with shared conversation memory.\n\n- Reduced platform operating cost from approximately $50K/month to under $8K/month, delivering 84%+ savings.\n- Migrated the no-code tooling stack from external dependencies to an in-house platform.\n- Built a spec-driven developer surface that emits TypeScript and Python SDKs, a CLI, and an MCP server.\n- Orchestrated provider-agnostic voice flows across VAD, STT, LLMs, TTS, tools, barge-in handling, traces, and Telnyx/Twilio media control.\n- Platform scale: 126.9K installs and 40M+ AI conversations.",
+    isExpanded: true,
+  },
+  {
+    id: "blockwill-platform",
+    title: "BlockWill Secure Estate Platform",
+    period: {
+      start: "2025",
+    },
+    link: "https://blockwill.io",
+    skills: [
+      "Privacy Engineering",
+      "Client-side Encryption",
+      "Zero-knowledge Proofs",
+      "Threshold Signatures",
+      "MPC",
+      "Key Management",
+      "Conditional Release",
+      "Secure Systems",
+    ],
+    description:
+      "A wealth-continuity platform for physical, financial, business, and digital assets.\n\n- Architected encrypted vault and conditional-release workflows designed around user-controlled access.\n- Designed beneficiary verification and custody flows with zero-knowledge proofs, threshold signatures, and multi-party computation.\n- Translated cryptography and privacy-by-design requirements into a product system people can use over decades.",
+  },
+  {
+    id: "august-conversation-intelligence",
+    title: "August Conversation Intelligence",
+    period: {
+      start: "2026",
+      end: "05.2026",
+    },
+    link: "https://helloaugust.ai",
+    skills: [
+      "Conversation Intelligence",
+      "Voice AI",
+      "Phone / Desktop / Watch",
+      "VoIP",
+      "SMS",
+      "Salesforce",
+      "Zoho",
+      "HubSpot",
+      "HIPAA",
+      "SOC 2",
+      "ISO-aligned Controls",
+    ],
+    description:
+      "Conversation-intelligence workflows that turn phone, desktop, smartwatch, VoIP, and SMS interactions into structured memory and action.\n\n- Surface commitments, objections, coaching signals, and next steps without replaying every conversation.\n- Route context into CRM-ready updates and follow-through across Salesforce, Zoho, and HubSpot.\n- Implemented consent, PHI-handling, auditability, and privacy controls for HIPAA, SOC 2 Type I/II, and ISO-aligned compliance readiness.",
+  },
+  {
+    id: "openapi-foundry",
+    title: "OpenAPI Foundry",
+    period: {
+      start: "2026",
+    },
+    link: "https://github.com/Anishpras/openapi-foundry",
+    skills: [
+      "TypeScript",
+      "OpenAPI",
+      "Kubb",
+      "oclif",
+      "MCP",
+      "Python",
+      "FastMCP",
+      "SDK Generation",
+    ],
+    description:
+      "A spec-driven generator that keeps a client ecosystem in sync with one OpenAPI document.\n\n- Emits typed TypeScript and Python SDKs, MCP servers, and a branded CLI from one config.\n- Templates shared authentication and typed data/error/request_id response envelopes across every artifact.\n- Orchestrates Kubb, oclif, openapi-python-client, and FastMCP into a buildable workspace.",
+    isExpanded: true,
+  },
+  {
+    id: "supernotch",
+    title: "SuperNotch",
+    period: {
+      start: "2026",
+    },
+    link: "https://github.com/Anishpras/supernotch",
+    skills: [
+      "Rust",
+      "Tauri v2",
+      "macOS",
+      "CoreAudio",
+      "EventKit",
+      "System APIs",
+      "Native UX",
+    ],
+    description:
+      "A fast, native Dynamic Island for macOS: a notch overlay that becomes a media hub, file shelf, HUD, dashboard, and scriptable control surface.\n\n- Built with Rust and Tauri v2 without Electron or a Node runtime.\n- Includes media controls, clipboard history, drag-and-drop actions, weather, calendar, system monitoring, global shortcuts, and a rate-limited local control API.",
+  },
+  {
     id: "xamtac-ai-marketing",
     title: "Xamtac AI Marketing Tools",
     period: {

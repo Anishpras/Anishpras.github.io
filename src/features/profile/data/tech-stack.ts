@@ -20,6 +20,12 @@ export const TECH_STACK: TechStack[] = [
     categories: ["Language"],
   },
   {
+    key: "rust",
+    title: "Rust",
+    href: "https://www.rust-lang.org/",
+    categories: ["Language"],
+  },
+  {
     key: "nodejs",
     title: "Node.js",
     href: "https://nodejs.org/",

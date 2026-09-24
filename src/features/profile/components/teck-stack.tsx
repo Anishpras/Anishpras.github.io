@@ -1,17 +1,68 @@
 import Image from "next/image";
 import React from "react";
 
+import { Tag } from "@/components/ui/tag";
 import { SimpleTooltip } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 import { TECH_STACK } from "../data/tech-stack";
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
 
+const TOOL_GROUPS = [
+  {
+    label: "Languages",
+    tools: ["TypeScript", "JavaScript", "Python", "Rust", "Solidity", "SQL"],
+  },
+  {
+    label: "Web & APIs",
+    tools: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Fastify",
+      "Express",
+      "NestJS",
+      "Hono",
+      "tRPC",
+      "GraphQL",
+      "REST",
+      "OpenAPI",
+    ],
+  },
+  {
+    label: "AI & voice",
+    tools: [
+      "LLM applications",
+      "RAG",
+      "AI agents",
+      "MCP",
+      "STT / TTS",
+      "Twilio",
+      "LiveKit",
+      "Vocode",
+    ],
+  },
+  {
+    label: "Data & infrastructure",
+    tools: [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "Elasticsearch",
+      "Prisma",
+      "Drizzle",
+      "AWS",
+      "Docker",
+      "CI/CD",
+    ],
+  },
+] as const;
+
 export function TeckStack() {
   return (
     <Panel id="stack">
       <PanelHeader>
-        <PanelTitle>Stack</PanelTitle>
+        <PanelTitle>Stack & tools</PanelTitle>
       </PanelHeader>
 
       <PanelContent
@@ -67,6 +118,26 @@ export function TeckStack() {
             );
           })}
         </ul>
+
+        <div className="mt-6 space-y-4 border-t border-edge pt-5">
+          {TOOL_GROUPS.map((group) => (
+            <div
+              key={group.label}
+              className="grid gap-2 sm:grid-cols-[9rem_1fr] sm:items-start"
+            >
+              <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
+                {group.label}
+              </p>
+              <ul className="flex flex-wrap gap-1.5">
+                {group.tools.map((tool) => (
+                  <li key={tool}>
+                    <Tag>{tool}</Tag>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </PanelContent>
     </Panel>
   );
