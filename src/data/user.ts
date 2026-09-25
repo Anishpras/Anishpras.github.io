@@ -7,7 +7,7 @@ export const USER = {
   bio: "Software Engineer | AI / Full-Stack Engineer | Engineering Lead",
   flipSentences: [
     "Software Engineer | AI / Full-Stack Engineer | Engineering Lead",
-    "5+ Years Experience",
+    "7+ Years Experience",
     "TypeScript • React • Next.js • Node.js • Python",
     "AI Platforms • Voice Systems • Privacy Engineering",
   ],
@@ -36,7 +36,7 @@ export const USER = {
     },
   ],
   about: `
-Hello! I'm Anish Prashun — a software engineer and engineering lead with 5+ years of experience turning hard product problems into AI platforms, full-stack SaaS, real-time voice systems, and privacy-first applications.
+Hello! I'm Anish Prashun — a software engineer and engineering lead with 7+ years of experience turning hard product problems into AI platforms, full-stack SaaS, real-time voice systems, and privacy-first applications.
 
 I currently work part-time with Assistable AI on an omnichannel agent platform for voice, SMS, WhatsApp, and web chat. I helped reduce operating cost from approximately $50K/month to under $8K/month — more than 84% savings — while migrating the no-code stack in-house and building OpenAPI, SDK, CLI, MCP, and real-time voice infrastructure. The platform reports 126.9K installs and 40M+ AI conversations.
 

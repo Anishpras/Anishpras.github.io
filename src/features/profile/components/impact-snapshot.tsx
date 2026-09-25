@@ -2,7 +2,7 @@ import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
 
 const IMPACT = [
   {
-    value: "5+",
+    value: "7+",
     label: "years shipping",
     detail: "AI, SaaS, voice, and secure systems",
   },
