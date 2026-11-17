@@ -7,6 +7,7 @@ import {
   CircleUserIcon,
   CornerDownLeftIcon,
   DownloadIcon,
+  FileTextIcon,
   LetterTextIcon,
   MoonStarIcon,
   RssIcon,
@@ -58,6 +59,11 @@ const MENU_LINKS: CommandLinkItem[] = [
     icon: AnishPrashunMark,
   },
   {
+    title: "Research",
+    href: "/research",
+    icon: FileTextIcon,
+  },
+  {
     title: "Blog",
     href: "/blog",
     icon: RssIcon,
@@ -79,6 +85,11 @@ const DAIFOLIO_LINKS: CommandLinkItem[] = [
     title: "Experience",
     href: "/#experience",
     icon: BriefcaseBusinessIcon,
+  },
+  {
+    title: "Research",
+    href: "/#research",
+    icon: FileTextIcon,
   },
   {
     title: "Projects",

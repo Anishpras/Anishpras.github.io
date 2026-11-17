@@ -2,22 +2,12 @@ import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import type { WebSite, WithContext } from "schema-dts";
 
 import { Providers } from "@/components/providers";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
 import { USER } from "@/data/user";
 import { fontMono, fontSans } from "@/lib/fonts";
-
-function getWebSiteJsonLd(): WithContext<WebSite> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_INFO.name,
-    url: SITE_INFO.url,
-    alternateName: [USER.username],
-  };
-}
+import { getSiteGraphJsonLd, toJsonLd } from "@/lib/structured-data";
 
 // Thanks @shadcn-ui, @tailwindcss
 const darkModeScript = String.raw`
@@ -36,12 +26,18 @@ const darkModeScript = String.raw`
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_INFO.url),
+  // No site-wide canonical: each page sets its own (a canonical of "/" here
+  // was inherited by /blog and pointed it at the home page).
   alternates: {
-    canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: "/rss", title: `${SITE_INFO.name} – Blog` },
+      ],
+    },
   },
   title: {
     template: `%s – ${SITE_INFO.name}`,
-    default: `${USER.displayName} – ${USER.jobTitle}`,
+    default: `${USER.displayName} – AI & Full-Stack Software Engineer, Engineering Lead`,
   },
   description: SITE_INFO.description,
   keywords: SITE_INFO.keywords,
@@ -86,7 +82,7 @@ export const metadata: Metadata = {
       },
     ],
     apple: {
-      url: "https://assets.anishprashun.me/images/apple-touch-icon.png",
+      url: "/apple-touch-icon.png",
       type: "image/png",
       sizes: "180x180",
     },
@@ -124,7 +120,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+            __html: toJsonLd(getSiteGraphJsonLd()),
           }}
         />
       </head>

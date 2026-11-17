@@ -3,9 +3,12 @@ import type { NavItem } from "@/types/nav";
 
 export const SITE_INFO = {
   name: USER.displayName,
-  url: process.env.APP_URL || "https://anishprashun.me",
+  // Production sets APP_URL; the apex domain 308-redirects to www.
+  url: process.env.APP_URL || "https://www.anishprashun.me",
   ogImage: USER.ogImage,
-  description: USER.bio,
+  // Meta description (about 160 characters); USER.bio stays the on-page tagline.
+  description:
+    "Anish Prashun, software engineer and engineering lead building AI platforms, voice AI and privacy-first systems. Portfolio, AI agent research and blog.",
   keywords: USER.keywords,
 };
 
@@ -18,6 +21,10 @@ export const MAIN_NAV: NavItem[] = [
   {
     title: "Prasfolio",
     href: "/",
+  },
+  {
+    title: "Research",
+    href: "/research",
   },
   {
     title: "Blog",

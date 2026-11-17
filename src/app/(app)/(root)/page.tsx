@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import type { Metadata } from "next";
 import type { ProfilePage as PageSchema, WithContext } from "schema-dts";
 
 import { USER } from "@/data/user";
@@ -12,9 +13,27 @@ import { Overview } from "@/features/profile/components/overview";
 import { ProfileCover } from "@/features/profile/components/profile-cover";
 import { ProfileHeader } from "@/features/profile/components/profile-header";
 import { Projects } from "@/features/profile/components/projects";
+import { Research } from "@/features/profile/components/research";
 import { SocialLinks } from "@/features/profile/components/social-links";
 import { TeckStack } from "@/features/profile/components/teck-stack";
+import { RESEARCH } from "@/features/profile/data/research";
+import {
+  absoluteUrl,
+  PERSON_ID,
+  toJsonLd,
+  WEBSITE_ID,
+} from "@/lib/structured-data";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    types: {
+      "text/markdown": "/llms.txt",
+      "application/rss+xml": "/rss",
+    },
+  },
+};
 
 export default function Page() {
   return (
@@ -22,7 +41,7 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getPageJsonLd()).replace(/</g, "\\u003c"),
+          __html: toJsonLd(getPageJsonLd()),
         }}
       />
 
@@ -46,6 +65,9 @@ export default function Page() {
         <TeckStack />
         <Separator />
 
+        <Research />
+        <Separator />
+
         <Blog />
         <Separator />
 
@@ -66,17 +88,20 @@ export default function Page() {
 }
 
 function getPageJsonLd(): WithContext<PageSchema> {
+  // A fixed content date (latest research), so the value does not change on every build.
+  const dateModified = RESEARCH.map((paper) => paper.datePublished)
+    .sort()
+    .at(-1);
+
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    "@id": absoluteUrl("/"),
+    url: absoluteUrl("/"),
+    isPartOf: { "@id": WEBSITE_ID },
     dateCreated: dayjs(USER.dateCreated).toISOString(),
-    dateModified: dayjs().toISOString(),
-    mainEntity: {
-      "@type": "Person",
-      name: USER.displayName,
-      identifier: USER.username,
-      image: USER.avatar,
-    },
+    dateModified: dayjs(dateModified).toISOString(),
+    mainEntity: { "@id": PERSON_ID },
   };
 }
 

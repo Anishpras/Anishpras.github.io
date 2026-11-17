@@ -2,7 +2,7 @@ import { CERTIFICATIONS } from "@/features/profile/data/certifications";
 
 const content = `# Certifications
 
-${CERTIFICATIONS.map((item) => `- [${item.title}](${item.credentialURL})`).join("\n")}
+${CERTIFICATIONS.map((item) => (item.credentialURL ? `- [${item.title}](${item.credentialURL})` : `- ${item.title}`)).join("\n")}
 `;
 
 export const dynamic = "force-static";

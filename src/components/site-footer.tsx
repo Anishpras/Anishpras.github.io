@@ -78,10 +78,7 @@ export function SiteFooter() {
 
             <a
               className="flex text-muted-foreground transition-colors hover:text-foreground"
-              href={
-                process.env.NEXT_PUBLIC_DMCA_URL ||
-                "https://www.dmca.com/ProtectionPro.aspx"
-              }
+              href={getDmcaUrl()}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -100,4 +97,16 @@ export function SiteFooter() {
 
 function Separator() {
   return <div className="flex h-11 w-px bg-edge" />;
+}
+
+/**
+ * The production NEXT_PUBLIC_DMCA_URL was set without a scheme
+ * ("www.dmca.com/..."), which browsers resolve as a relative path (a 404 on
+ * every page). Add https:// when the scheme is missing.
+ */
+function getDmcaUrl() {
+  const url =
+    process.env.NEXT_PUBLIC_DMCA_URL ||
+    "https://www.dmca.com/ProtectionPro.aspx";
+  return /^https?:\/\//i.test(url) ? url : `https://${url.replace(/^\/+/, "")}`;
 }

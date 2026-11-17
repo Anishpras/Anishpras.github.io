@@ -95,8 +95,9 @@ export function ProfileHeader() {
         </div>
 
         <div className="border-t border-edge">
-          <h1 className="flex items-center pl-4 text-3xl font-semibold">
-            {USER.displayName}
+          {/* The h1 holds only the name; the icons sit beside it at the same size. */}
+          <div className="flex items-center pl-4 text-3xl font-semibold">
+            <h1>{USER.displayName}</h1>
             &nbsp;
             <SimpleTooltip content="Verified">
               <VerifiedIcon className="size-[0.6em] translate-y-px text-info" />
@@ -110,7 +111,7 @@ export function ProfileHeader() {
                 />
               </>
             )}
-          </h1>
+          </div>
 
           <div className="h-12 border-t border-edge py-1 pl-4 sm:h-auto">
             <FlipSentences sentences={USER.flipSentences} />
