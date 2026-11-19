@@ -15,6 +15,7 @@ export const USER = {
   phoneNumber: "KzkxNzk3MDYxNTIxMQ==", // E.164 format, base64 encoded
   email: "YW5pc2hwcmFzaHVuMTE4QGdtYWlsLmNvbQ==", // base64 encoded
   website: "https://anishprashun.me",
+  orcid: "0009-0007-6360-6017",
   otherWebsites: [
     "https://anishpras-git-main-anishpras.vercel.app",
     "https://anishpras.vercel.app",

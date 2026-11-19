@@ -1,6 +1,7 @@
 import { SITE_INFO } from "@/config/site";
 import { getAllPosts } from "@/data/blog";
 import { getDoiUrl, RESEARCH } from "@/features/profile/data/research";
+import { ORCID_URL } from "@/lib/structured-data";
 
 const allPosts = getAllPosts();
 
@@ -16,6 +17,8 @@ const content = `# Anish Prashun
 - [Certifications](${SITE_INFO.url}/certifications.md): Certifications and credentials I've earned.
 
 ## Research
+
+Author ORCID: ${ORCID_URL}
 
 ${RESEARCH.map((paper) => `- [${paper.title}](${SITE_INFO.url}/research/${paper.slug}): ${paper.subtitle}. DOI: ${getDoiUrl(paper)}`).join("\n")}
 

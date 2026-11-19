@@ -23,6 +23,7 @@ import type { ResearchPaper } from "@/features/profile/types/research";
 import {
   absoluteUrl,
   getBreadcrumbJsonLd,
+  ORCID_URL,
   PERSON_ID,
   toJsonLd,
   WEBSITE_ID,
@@ -92,6 +93,7 @@ export async function generateMetadata({
     other: {
       citation_title: getFullTitle(paper),
       citation_author: `${USER.lastName}, ${USER.firstName}`,
+      citation_author_orcid: ORCID_URL,
       citation_publication_date: dayjs(paper.datePublished).format(
         "YYYY/MM/DD"
       ),
@@ -126,6 +128,7 @@ function getPageJsonLd(paper: ResearchPaper) {
       "@id": PERSON_ID,
       name: USER.displayName,
       url: absoluteUrl("/"),
+      sameAs: ORCID_URL,
     },
     identifier: {
       "@type": "PropertyValue",
@@ -203,8 +206,11 @@ export default async function Page({
         <p className="lead mt-6 mb-2">{paper.subtitle}</p>
 
         <p className="mt-0 font-mono text-sm text-muted-foreground">
-          <Link href="/">{USER.displayName}</Link> · Independent researcher ·
-          Technical report ·{" "}
+          <Link href="/">{USER.displayName}</Link> (ORCID{" "}
+          <a href={ORCID_URL} target="_blank" rel="noopener">
+            {USER.orcid}
+          </a>
+          ) · Independent researcher · Technical report ·{" "}
           <time dateTime={paper.datePublished}>
             {dayjs(paper.datePublished).format("D MMMM YYYY")}
           </time>

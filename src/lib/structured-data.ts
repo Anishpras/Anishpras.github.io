@@ -6,6 +6,7 @@ import { SOCIAL_LINKS } from "@/features/profile/data/social-links";
 
 export const PERSON_ID = `${SITE_INFO.url}/#person`;
 export const WEBSITE_ID = `${SITE_INFO.url}/#website`;
+export const ORCID_URL = `https://orcid.org/${USER.orcid}`;
 
 /** Turn a site-relative path into an absolute URL on the canonical host. */
 export function absoluteUrl(path: string) {
@@ -30,7 +31,13 @@ export function getPersonJsonLd(): Person {
     image: absoluteUrl(USER.avatar),
     jobTitle: USER.jobTitle,
     description: USER.bio,
-    sameAs: SOCIAL_LINKS.map((item) => item.href),
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "ORCID",
+      value: USER.orcid,
+      url: ORCID_URL,
+    },
+    sameAs: [...SOCIAL_LINKS.map((item) => item.href), ORCID_URL],
   };
 }
 

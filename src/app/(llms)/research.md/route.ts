@@ -6,17 +6,18 @@ import {
   getResearchPdfUrl,
   RESEARCH,
 } from "@/features/profile/data/research";
+import { ORCID_URL } from "@/lib/structured-data";
 
 const content = `# Research
 
-Independent technical reports by Anish Prashun on AI agent reliability, security and privacy. Each is archived on Zenodo with a DOI and comes with open code, synthetic data and one command that reproduces every number in it. Papers and data: CC BY 4.0. Code: MIT.
+Independent technical reports by Anish Prashun (ORCID ${ORCID_URL}) on AI agent reliability, security and privacy. Each is archived on Zenodo with a DOI and comes with open code, synthetic data and one command that reproduces every number in it. Papers and data: CC BY 4.0. Code: MIT.
 
 ${RESEARCH.map(
   (paper) => `## ${paper.title}
 
 ${paper.subtitle}
 
-- Author: Anish Prashun (independent researcher)
+- Author: Anish Prashun (independent researcher, ORCID ${ORCID_URL})
 - Published: ${paper.datePublished}
 - Page: ${SITE_INFO.url}/research/${paper.slug}
 - Paper (PDF): ${SITE_INFO.url}${getResearchPdfUrl(paper)}
