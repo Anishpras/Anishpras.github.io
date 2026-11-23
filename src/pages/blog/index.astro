@@ -1,0 +1,40 @@
+---
+import BlogList from "@/components/blog-list.astro";
+import { getAllPosts } from "@/data/blog";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import {
+  BLOG_DESCRIPTION,
+  getActiveCategories,
+  getBlogJsonLd,
+  pageCount,
+  slicePage,
+} from "@/lib/blog-pages";
+
+const posts = await getAllPosts();
+const pagePosts = slicePage(posts, 1);
+const categories = await getActiveCategories();
+---
+
+<DocsLayout
+  title="Blog: Tech News Analysis"
+  description={BLOG_DESCRIPTION}
+  canonical="/blog"
+  ogImage="/og/blog.png"
+  ogImageAlt="Blog by Anish Prashun"
+  markdownPath="/blog.md"
+  jsonLd={getBlogJsonLd(
+    pagePosts,
+    "/blog",
+    "Blog – Anish Prashun",
+    BLOG_DESCRIPTION
+  )}
+>
+  <BlogList
+    heading="Blog"
+    intro={BLOG_DESCRIPTION}
+    posts={pagePosts}
+    categories={categories}
+    currentPage={1}
+    lastPage={pageCount(posts.length)}
+  />
+</DocsLayout>

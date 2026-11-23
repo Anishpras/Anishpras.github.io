@@ -1,0 +1,46 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import BlogList from "@/components/blog-list.astro";
+import { getAllPosts } from "@/data/blog";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import { getActiveCategories, getBlogJsonLd } from "@/lib/blog-pages";
+import { CATEGORY_DESCRIPTIONS, categoryLabel } from "@/lib/post-utils";
+
+export const getStaticPaths = (async () => {
+  const categories = await getActiveCategories();
+  return categories.map((category) => ({ params: { category } }));
+}) satisfies GetStaticPaths;
+
+const category = Astro.params.category!;
+const label = categoryLabel(category);
+const posts = (await getAllPosts()).filter(
+  (post) => post.metadata.category === category
+);
+const categories = await getActiveCategories();
+const description =
+  CATEGORY_DESCRIPTIONS[category] ??
+  `Analysis and commentary on ${label} by Anish Prashun.`;
+const path = `/blog/topic/${category}`;
+---
+
+<DocsLayout
+  title={`${label} News & Analysis`}
+  description={description}
+  canonical={path}
+  ogImage={`/og/topic-${category}.png`}
+  jsonLd={getBlogJsonLd(
+    posts.slice(0, 50),
+    path,
+    `${label} – Anish Prashun`,
+    description
+  )}
+>
+  <BlogList
+    heading={label}
+    intro={description}
+    posts={posts}
+    categories={categories}
+    activeCategory={category}
+  />
+</DocsLayout>

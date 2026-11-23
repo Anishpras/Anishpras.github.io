@@ -1,0 +1,240 @@
+---
+import type { GetStaticPaths } from "astro";
+import dayjs from "dayjs";
+
+import { Markdown } from "@/components/markdown";
+import { PROSE_CLASS } from "@/components/ui/typography";
+import { getAllPosts } from "@/data/blog";
+import { USER } from "@/data/user";
+import {
+  getApaCitation,
+  getBibtex,
+  getDoiUrl,
+  getFullTitle,
+  getResearchPdfUrl,
+  getResearchUrl,
+  RESEARCH,
+} from "@/features/profile/data/research";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import {
+  absoluteUrl,
+  getBreadcrumbJsonLd,
+  ORCID_URL,
+  PERSON_ID,
+  WEBSITE_ID,
+} from "@/lib/structured-data";
+
+export const getStaticPaths = (() =>
+  RESEARCH.map((paper) => ({
+    params: { slug: paper.slug },
+  }))) satisfies GetStaticPaths;
+
+const PAPER_LICENSE = "https://creativecommons.org/licenses/by/4.0/";
+const CODE_LICENSE = "https://opensource.org/licenses/MIT";
+
+const paper = RESEARCH.find((item) => item.slug === Astro.params.slug)!;
+const others = RESEARCH.filter((item) => item.slug !== paper.slug);
+const url = getResearchUrl(paper);
+const description = `${paper.subtitle}. Technical report by Anish Prashun with open code and data.`;
+const ogImage = `/og/research-${paper.slug}.png`;
+
+// Blog posts on the same topics, so research and commentary link to each other.
+const topicWords = new Set(
+  paper.topics
+    .flatMap((t) => t.toLowerCase().split(/\W+/))
+    .filter((w) => w.length > 3)
+);
+const relatedPosts = (await getAllPosts())
+  .filter(
+    (post) =>
+      post.metadata.category === "ai" || post.metadata.category === "security"
+  )
+  .filter((post) =>
+    (post.metadata.tags ?? []).some((tag) =>
+      tag
+        .toLowerCase()
+        .split(/\W+/)
+        .some((w) => topicWords.has(w))
+    )
+  )
+  .slice(0, 4);
+
+const pageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "@id": `${absoluteUrl(url)}#article`,
+  headline: paper.title,
+  name: getFullTitle(paper),
+  alternativeHeadline: paper.subtitle,
+  description,
+  abstract: paper.summary.replace(/`/g, ""),
+  url: absoluteUrl(url),
+  mainEntityOfPage: absoluteUrl(url),
+  image: absoluteUrl(ogImage),
+  datePublished: paper.datePublished,
+  inLanguage: "en",
+  isPartOf: { "@id": WEBSITE_ID },
+  author: {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: USER.displayName,
+    url: absoluteUrl("/"),
+    sameAs: ORCID_URL,
+  },
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "DOI",
+    value: paper.doi,
+    url: getDoiUrl(paper),
+  },
+  sameAs: getDoiUrl(paper),
+  license: PAPER_LICENSE,
+  keywords: paper.topics.join(", "),
+  encoding: {
+    "@type": "MediaObject",
+    contentUrl: absoluteUrl(getResearchPdfUrl(paper)),
+    encodingFormat: "application/pdf",
+  },
+  isBasedOn: {
+    "@type": "SoftwareSourceCode",
+    codeRepository: paper.repository,
+    programmingLanguage: "Python",
+    license: CODE_LICENSE,
+    author: { "@id": PERSON_ID },
+  },
+};
+
+// Google Scholar reads these Highwire Press tags, not JSON-LD.
+const citationMeta = {
+  citation_title: getFullTitle(paper),
+  citation_author: `${USER.lastName}, ${USER.firstName}`,
+  citation_author_orcid: ORCID_URL,
+  citation_publication_date: dayjs(paper.datePublished).format("YYYY/MM/DD"),
+  citation_doi: paper.doi,
+  citation_pdf_url: absoluteUrl(getResearchPdfUrl(paper)),
+  citation_abstract_html_url: absoluteUrl(url),
+  citation_language: "en",
+  citation_keywords: paper.topics.join("; "),
+  keywords: paper.topics.join(", "),
+};
+---
+
+<DocsLayout
+  title={paper.title}
+  description={description}
+  canonical={url}
+  ogType="article"
+  ogTitle={paper.title}
+  ogImage={ogImage}
+  ogImageAlt={paper.title}
+  markdownPath={`${url}.md`}
+  article={{ publishedTime: paper.datePublished, tags: paper.topics }}
+  meta={citationMeta}
+  jsonLd={[
+    pageJsonLd,
+    getBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Research", path: "/research" },
+      { name: paper.title, path: url },
+    ]),
+  ]}
+>
+  <nav
+    class="flex items-center justify-between p-2 pl-4 font-mono text-sm text-muted-foreground"
+    aria-label="Breadcrumb"
+  >
+    <a href="/research" class="hover:text-foreground">
+      ← Research
+    </a>
+  </nav>
+
+  <article class:list={[PROSE_CLASS, "px-4"]}>
+    <h1 class="screen-line-before screen-line-after mb-6 font-semibold">
+      {paper.title}
+    </h1>
+
+    <p class="lead mt-6 mb-2">{paper.subtitle}</p>
+
+    <p class="mt-0 font-mono text-sm text-muted-foreground">
+      <a href="/">{USER.displayName}</a> (ORCID{" "}
+      <a href={ORCID_URL} target="_blank" rel="noopener">
+        {USER.orcid}
+      </a>
+      ) · Independent researcher · Technical report ·{" "}
+      <time datetime={paper.datePublished}>
+        {dayjs(paper.datePublished).format("D MMMM YYYY")}
+      </time>
+    </p>
+
+    <p class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-sm">
+      <a href={getResearchPdfUrl(paper)} target="_blank" rel="noopener">
+        Read the paper (PDF)
+      </a>
+      <a href={paper.repository} target="_blank" rel="noopener">
+        Code and data (GitHub)
+      </a>
+      <a href={getDoiUrl(paper)} target="_blank" rel="noopener">
+        DOI {paper.doi}
+      </a>
+    </p>
+
+    <h2>Summary</h2>
+    <Markdown>{paper.summary}</Markdown>
+
+    <h2>Key findings</h2>
+    <ul>
+      {paper.keyFindings.map((finding) => (
+        <li>{finding}</li>
+      ))}
+    </ul>
+
+    <h2>Reproduce it</h2>
+    <p>
+      Python 3 standard library only, synthetic data, no network access. Clone
+      the <a href={paper.repository}>repository</a> and run:
+    </p>
+    <pre class="not-prose my-4 overflow-x-auto rounded-xl border border-edge bg-zinc-950 p-4 font-mono text-sm leading-relaxed text-zinc-50 dark:bg-zinc-900"><code>{paper.reproduce}</code></pre>
+
+    <h2>Cite</h2>
+    <p>{getApaCitation(paper)}</p>
+    <pre class="not-prose my-4 overflow-x-auto rounded-xl border border-edge bg-zinc-950 p-4 font-mono text-sm leading-relaxed text-zinc-50 dark:bg-zinc-900"><code>{getBibtex(paper)}</code></pre>
+
+    <p class="text-sm text-muted-foreground">
+      Paper and data: CC BY 4.0. Code: MIT. All data in the study is synthetic.
+    </p>
+
+    <ul class="not-prose flex flex-wrap gap-1.5 p-0">
+      {paper.topics.map((topic) => (
+        <li class="flex">
+          <span class="inline-flex items-center rounded-lg border bg-zinc-50 px-1.5 py-0.5 font-mono text-xs text-muted-foreground dark:bg-zinc-900">
+            {topic}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <h2>More research</h2>
+    <ul>
+      {others.map((item) => (
+        <li>
+          <a href={getResearchUrl(item)}>{item.title}</a>
+        </li>
+      ))}
+    </ul>
+
+    {relatedPosts.length > 0 && (
+      <>
+        <h2>Related analysis on the blog</h2>
+        <ul>
+          {relatedPosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}`}>{post.metadata.title}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </article>
+
+  <div class="screen-line-before h-4 w-full"></div>
+</DocsLayout>

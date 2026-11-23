@@ -1,0 +1,68 @@
+name: Daily blog
+
+on:
+  schedule:
+    # 12:30 UTC = 6:30 am Chicago (CST): the US morning news cycle has landed.
+    - cron: "30 12 * * *"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "Number of posts"
+        default: "5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - name: Skip when no API key is configured
+        if: env.ANTHROPIC_API_KEY == ''
+        run: echo "::notice::Add the ANTHROPIC_API_KEY repository secret to enable daily posts."
+
+      - uses: actions/checkout@v4
+        if: env.ANTHROPIC_API_KEY != ''
+
+      - uses: pnpm/action-setup@v4
+        if: env.ANTHROPIC_API_KEY != ''
+
+      - uses: actions/setup-node@v4
+        if: env.ANTHROPIC_API_KEY != ''
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install
+        if: env.ANTHROPIC_API_KEY != ''
+        run: pnpm install --frozen-lockfile
+
+      - name: Research and write posts
+        if: env.ANTHROPIC_API_KEY != ''
+        run: node scripts/daily-blog/run.ts --count=${{ github.event.inputs.count || '5' }}
+
+      - name: Validate posts and build the site
+        if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          node scripts/validate-posts.ts
+          pnpm build
+
+      - name: Commit and push
+        if: env.ANTHROPIC_API_KEY != ''
+        run: |
+          git config user.name "Anish Prashun"
+          git config user.email "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+          git add src/content/blog
+          if git diff --cached --quiet; then
+            echo "No new posts."
+            exit 0
+          fi
+          git commit -m "Daily analysis: $(date -u +%Y-%m-%d)"
+          git push

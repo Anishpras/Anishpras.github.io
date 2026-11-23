@@ -1,0 +1,112 @@
+---
+import { PostItem } from "@/components/post-item";
+import { CATEGORY_LABELS } from "@/lib/post-utils";
+import type { Post } from "@/types/blog";
+
+interface Props {
+  heading: string;
+  intro: string;
+  posts: Post[];
+  categories: string[];
+  activeCategory?: string;
+  currentPage?: number;
+  lastPage?: number;
+  /** Path for page N (N ≥ 2). */
+  pageHref?: (page: number) => string;
+  firstPageHref?: string;
+}
+
+const {
+  heading,
+  intro,
+  posts,
+  categories,
+  activeCategory,
+  currentPage = 1,
+  lastPage = 1,
+  pageHref = (n: number) => `/blog/page/${n}`,
+  firstPageHref = "/blog",
+} = Astro.props;
+
+const href = (n: number) => (n <= 1 ? firstPageHref : pageHref(n));
+---
+
+<div class="screen-line-after px-4">
+  <h1 class="text-3xl font-semibold">{heading}</h1>
+</div>
+
+<div class="screen-line-after space-y-2 p-4">
+  <p class="font-mono text-sm text-balance text-muted-foreground">{intro}</p>
+</div>
+
+{categories.length > 0 && (
+  <nav
+    aria-label="Topics"
+    class="screen-line-after flex flex-wrap gap-x-4 gap-y-1 px-4 py-2 font-mono text-sm"
+  >
+    <a
+      href="/blog"
+      class:list={[
+        "text-muted-foreground hover:text-foreground",
+        !activeCategory && "text-foreground underline underline-offset-4",
+      ]}
+    >
+      All
+    </a>
+    {categories.map((category) => (
+      <a
+        href={`/blog/topic/${category}`}
+        class:list={[
+          "text-muted-foreground hover:text-foreground",
+          activeCategory === category &&
+            "text-foreground underline underline-offset-4",
+        ]}
+      >
+        {CATEGORY_LABELS[category] ?? category}
+      </a>
+    ))}
+  </nav>
+)}
+
+<div class="relative pt-4">
+  <div class="absolute inset-0 -z-1 grid grid-cols-1 gap-4 max-sm:hidden sm:grid-cols-2">
+    <div class="border-r border-edge"></div>
+    <div class="border-l border-edge"></div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {posts.map((post, index) => (
+      <PostItem
+        post={post}
+        shouldPreloadImage={currentPage === 1 && index < 2}
+      />
+    ))}
+  </div>
+</div>
+
+{lastPage > 1 && (
+  <nav
+    aria-label="Pagination"
+    class="screen-line-before flex items-center justify-between px-4 py-3 font-mono text-sm"
+  >
+    {currentPage > 1 ? (
+      <a rel="prev" href={href(currentPage - 1)} class="link">
+        ← Newer
+      </a>
+    ) : (
+      <span />
+    )}
+    <span class="text-muted-foreground">
+      Page {currentPage} of {lastPage}
+    </span>
+    {currentPage < lastPage ? (
+      <a rel="next" href={href(currentPage + 1)} class="link">
+        Older →
+      </a>
+    ) : (
+      <span />
+    )}
+  </nav>
+)}
+
+<div class="h-4"></div>

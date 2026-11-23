@@ -1,5 +1,3 @@
-"use client";
-
 import { Volume2Icon } from "lucide-react";
 import { Portal } from "radix-ui";
 import { useRef } from "react";

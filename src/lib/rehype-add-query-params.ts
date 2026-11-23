@@ -1,23 +1,17 @@
+import type { Element, Root } from "hast";
 import { visit } from "unist-util-visit";
 
-import type { UnistNode, UnistTree } from "@/types/unist";
 import { addQueryParams } from "@/utils/url";
 
+/** Append UTM params to outbound links in Markdown content. */
 export function rehypeAddQueryParams(params: Record<string, string>) {
-  return (tree: UnistTree) => {
-    visit(tree, (node: UnistNode) => {
-      if (
-        node.type !== "element" ||
-        node?.tagName !== "a" ||
-        !node?.properties?.href
-      ) {
-        return;
-      }
+  return (tree: Root) => {
+    visit(tree, "element", (node: Element) => {
+      if (node.tagName !== "a") return;
 
-      const href = node.properties?.href as string | undefined;
-
+      const href = node.properties?.href;
       if (
-        !href ||
+        typeof href !== "string" ||
         href.startsWith("/") ||
         href.startsWith("mailto:") ||
         href.startsWith("tel:") ||

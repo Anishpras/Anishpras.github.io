@@ -42,3 +42,6 @@ next-env.d.ts
 
 # anishpras
 .anishpras
+.astro
+/dist
+.playwright-mcp

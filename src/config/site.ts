@@ -5,6 +5,8 @@ export const SITE_INFO = {
   name: USER.displayName,
   // Production sets APP_URL; the apex domain 308-redirects to www.
   url: process.env.APP_URL || "https://www.anishprashun.me",
+  // ≤ 60 characters so it isn't truncated in search results.
+  defaultTitle: `${USER.displayName} – AI Engineer & Engineering Lead`,
   ogImage: USER.ogImage,
   // Meta description (about 160 characters); USER.bio stays the on-page tagline.
   description:

@@ -1,0 +1,352 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getEntry, render } from "astro:content";
+import dayjs from "dayjs";
+
+import { H2, H3 } from "@/components/mdx-components";
+import { PROSE_CLASS } from "@/components/ui/typography";
+import {
+  findNeighbour,
+  getAllPosts,
+  getRelatedPosts,
+  wordCount,
+} from "@/data/blog";
+import { USER } from "@/data/user";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import { categoryLabel, getOgImageUrl, readingMinutes } from "@/lib/post-utils";
+import {
+  absoluteUrl,
+  getBreadcrumbJsonLd,
+  ORCID_URL,
+  PERSON_ID,
+  WEBSITE_ID,
+} from "@/lib/structured-data";
+
+export const getStaticPaths = (async () => {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}) satisfies GetStaticPaths;
+
+const slug = Astro.params.slug!;
+const posts = await getAllPosts();
+const post = posts.find((item) => item.slug === slug)!;
+const entry = (await getEntry("blog", slug))!;
+const { Content, headings } = await render(entry);
+
+const {
+  title,
+  description,
+  createdAt,
+  updatedAt,
+  category,
+  tags = [],
+  tldr,
+  keyTakeaways,
+  sources,
+  noindex,
+} = post.metadata;
+const body = post.metadata.body ?? "";
+const path = `/blog/${slug}`;
+const url = absoluteUrl(path);
+const ogImage = post.metadata.image || getOgImageUrl(slug);
+const { previous, next } = findNeighbour(posts, slug);
+const related = getRelatedPosts(posts, post, 4);
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const updated = !dayjs(updatedAt).isSame(dayjs(createdAt), "day");
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${url}#article`,
+  headline: title,
+  description,
+  image: {
+    "@type": "ImageObject",
+    url: absoluteUrl(ogImage),
+    width: 1200,
+    height: 630,
+  },
+  url,
+  mainEntityOfPage: url,
+  inLanguage: "en",
+  isPartOf: { "@id": WEBSITE_ID },
+  datePublished: createdAt.toISOString(),
+  dateModified: updatedAt.toISOString(),
+  wordCount: wordCount(body),
+  articleSection: categoryLabel(category),
+  ...(tags.length ? { keywords: tags.join(", ") } : {}),
+  author: {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: USER.displayName,
+    url: absoluteUrl("/"),
+    jobTitle: USER.jobTitle,
+    sameAs: [ORCID_URL],
+  },
+  publisher: { "@id": PERSON_ID },
+  ...(sources?.length
+    ? {
+        citation: sources.map((source) => ({
+          "@type": "CreativeWork",
+          name: source.title,
+          url: source.url,
+          ...(source.publisher
+            ? { publisher: { "@type": "Organization", name: source.publisher } }
+            : {}),
+        })),
+      }
+    : {}),
+};
+
+const breadcrumbs = getBreadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Blog", path: "/blog" },
+  ...(category
+    ? [{ name: categoryLabel(category), path: `/blog/topic/${category}` }]
+    : []),
+  { name: title, path },
+]);
+
+const mdxComponents = { h2: H2, h3: H3 };
+---
+
+<DocsLayout
+  title={title}
+  description={description}
+  canonical={path}
+  ogType="article"
+  ogImage={ogImage}
+  ogImageAlt={title}
+  markdownPath={`${path}.md`}
+  article={{
+    publishedTime: createdAt,
+    modifiedTime: updatedAt,
+    section: categoryLabel(category),
+    tags,
+  }}
+  jsonLd={[articleJsonLd, breadcrumbs]}
+  noindex={noindex}
+>
+  <nav
+    class="flex items-center justify-between p-2 pl-4 font-mono text-sm text-muted-foreground"
+    aria-label="Post navigation"
+  >
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-1 hover:text-foreground"
+    >
+      ← Blog
+    </a>
+    <div class="flex items-center gap-3">
+      {previous && (
+        <a
+          href={`/blog/${previous.slug}`}
+          rel="prev"
+          class="hover:text-foreground"
+          title={previous.metadata.title}
+        >
+          ← Newer
+        </a>
+      )}
+      {next && (
+        <a
+          href={`/blog/${next.slug}`}
+          rel="next"
+          class="hover:text-foreground"
+          title={next.metadata.title}
+        >
+          Older →
+        </a>
+      )}
+    </div>
+  </nav>
+
+  <article class:list={[PROSE_CLASS, "px-4"]}>
+    <h1 class="screen-line-before screen-line-after mb-6 font-semibold">
+      {title}
+    </h1>
+
+    <p class="lead mt-6 mb-2">{description}</p>
+
+    <p class="mt-0 mb-6 font-mono text-sm text-muted-foreground">
+      By{" "}
+      <a href="/" rel="author">
+        {USER.displayName}
+      </a>{" "}
+      ·{" "}
+      <time datetime={createdAt.toISOString()}>
+        {dayjs(createdAt).format("D MMMM YYYY")}
+      </time>
+      {updated && (
+        <>
+          {" "}
+          · Updated{" "}
+          <time datetime={updatedAt.toISOString()}>
+            {dayjs(updatedAt).format("D MMMM YYYY")}
+          </time>
+        </>
+      )}{" "}
+      · {readingMinutes(body)} min read
+      {category && (
+        <>
+          {" "}
+          · <a href={`/blog/topic/${category}`}>{categoryLabel(category)}</a>
+        </>
+      )}
+    </p>
+
+    {(tldr || keyTakeaways?.length) && (
+      <aside
+        class="not-prose my-6 rounded-lg border border-edge bg-code p-4 font-mono text-sm"
+        aria-label="Summary"
+      >
+        {tldr && (
+          <p class="m-0">
+            <strong class="font-sans">TL;DR:</strong> {tldr}
+          </p>
+        )}
+        {keyTakeaways?.length && (
+          <>
+            <p
+              class:list={[
+                "font-sans font-semibold",
+                tldr ? "mt-3 mb-1" : "m-0 mb-1",
+              ]}
+            >
+              Key takeaways
+            </p>
+            <ul class="m-0 list-disc space-y-1 pl-5">
+              {keyTakeaways.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
+      </aside>
+    )}
+
+    {toc.length > 2 && (
+      <details class="not-prose rounded-lg bg-code font-sans">
+        <summary class="cursor-pointer px-4 py-3 text-sm font-medium">
+          Table of Contents
+        </summary>
+        <ul class="flex flex-col px-4 pb-3 text-sm text-muted-foreground">
+          {toc.map((h) => (
+            <li
+              class="flex py-1"
+              style={{ paddingInlineStart: `${16 * (h.depth - 2)}px` }}
+            >
+              <a
+                class="underline-offset-4 hover:text-foreground hover:underline"
+                href={`#${h.slug}`}
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+
+    <div>
+      <Content components={mdxComponents} />
+    </div>
+
+    {sources?.length && (
+      <section aria-labelledby="sources">
+        <h2 id="sources">Sources</h2>
+        <ol>
+          {sources.map((source) => (
+            <li>
+              <a href={source.url} target="_blank" rel="noopener noreferrer">
+                {source.title}
+              </a>
+              {source.publisher && (
+                <span class="text-muted-foreground"> · {source.publisher}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    <section
+      class="not-prose my-8 flex gap-4 rounded-lg border border-edge p-4"
+      aria-label="About the author"
+    >
+      <img
+        src={USER.avatar}
+        alt=""
+        width="56"
+        height="56"
+        loading="lazy"
+        class="size-14 shrink-0 rounded-full ring-1 ring-border"
+      />
+      <div class="font-mono text-sm">
+        <p class="m-0 font-sans font-semibold">
+          <a href="/" rel="author" class="underline-offset-4 hover:underline">
+            {USER.displayName}
+          </a>
+        </p>
+        <p class="mt-1 mb-0 text-muted-foreground">
+          Software engineer and engineering lead with 7+ years building AI
+          platforms, voice systems and privacy-first products. Publishes
+          independent{" "}
+          <a href="/research" class="link text-foreground">
+            research on AI agent reliability
+          </a>
+          . Opinions are my own.
+        </p>
+      </div>
+    </section>
+
+    {tags.length > 0 && (
+      <ul class="not-prose flex flex-wrap gap-1.5 p-0" aria-label="Tags">
+        {tags.map((tag) => (
+          <li class="flex">
+            <span class="inline-flex items-center rounded-lg border bg-zinc-50 px-1.5 py-0.5 font-mono text-xs text-muted-foreground dark:bg-zinc-900">
+              {tag}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {related.length > 0 && (
+      <section aria-labelledby="related">
+        <h2 id="related">Related reading</h2>
+        <ul>
+          {related.map((item) => (
+            <li>
+              <a href={`/blog/${item.slug}`}>{item.metadata.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+
+  <div class="screen-line-before h-4 w-full"></div>
+</DocsLayout>
+
+<script>
+  // Copy buttons for code blocks (no framework needed).
+  for (const pre of document.querySelectorAll<HTMLPreElement>(
+    "article pre.astro-code"
+  )) {
+    const wrap = document.createElement("div");
+    wrap.className = "code-wrap relative";
+    pre.replaceWith(wrap);
+    wrap.appendChild(pre);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.copyCode = "";
+    button.textContent = "Copy";
+    button.addEventListener("click", async () => {
+      await navigator.clipboard.writeText(pre.innerText);
+      button.textContent = "Copied";
+      setTimeout(() => (button.textContent = "Copy"), 1500);
+    });
+    wrap.appendChild(button);
+  }
+</script>

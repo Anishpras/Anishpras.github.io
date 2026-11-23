@@ -1,16 +1,13 @@
 import { ArrowRightIcon } from "lucide-react";
-import Link from "next/link";
-import React from "react";
 
+import Link from "@/components/link";
 import { PostItem } from "@/components/post-item";
 import { Button } from "@/components/ui/button";
-import { getAllPosts } from "@/data/blog";
+import type { Post } from "@/types/blog";
 
 import { Panel, PanelHeader, PanelTitle } from "./panel";
 
-export function Blog() {
-  const allPosts = getAllPosts();
-
+export function Blog({ posts }: { posts: Post[] }) {
   return (
     <Panel id="blog">
       <PanelHeader>
@@ -24,7 +21,7 @@ export function Blog() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {allPosts.slice(0, 4).map((post) => (
+          {posts.slice(0, 4).map((post) => (
             <PostItem key={post.slug} post={post} />
           ))}
         </div>

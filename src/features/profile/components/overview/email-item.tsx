@@ -1,5 +1,3 @@
-"use client";
-
 import { MailIcon } from "lucide-react";
 
 import { useIsClient } from "@/hooks/use-is-client";

@@ -1,0 +1,13 @@
+---
+import BaseLayout, { type Props as BaseProps } from "./BaseLayout.astro";
+
+export type Props = BaseProps;
+---
+
+<BaseLayout {...Astro.props}>
+  <slot name="head" slot="head" />
+  <div class="mx-auto border-x border-edge md:max-w-3xl">
+    <div class="screen-line-after h-8 px-2 before:absolute before:-left-[100vw] before:-z-1 before:h-full before:w-[200vw] before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:var(--color-edge)]/56"></div>
+    <slot />
+  </div>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import { ResearchItem } from "@/features/profile/components/research/research-item";
+import {
+  getDoiUrl,
+  getFullTitle,
+  getResearchUrl,
+  RESEARCH,
+} from "@/features/profile/data/research";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import {
+  absoluteUrl,
+  getBreadcrumbJsonLd,
+  PERSON_ID,
+  WEBSITE_ID,
+} from "@/lib/structured-data";
+
+const description =
+  "Independent technical reports by Anish Prashun on AI agent reliability, security and privacy, each with a DOI, open code and a one-command reproduction.";
+
+const pageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": absoluteUrl("/research"),
+  url: absoluteUrl("/research"),
+  name: "Research by Anish Prashun",
+  description,
+  inLanguage: "en",
+  isPartOf: { "@id": WEBSITE_ID },
+  author: { "@id": PERSON_ID },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: RESEARCH.map((paper, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: absoluteUrl(getResearchUrl(paper)),
+      item: {
+        "@type": "ScholarlyArticle",
+        "@id": `${absoluteUrl(getResearchUrl(paper))}#article`,
+        headline: paper.title,
+        name: getFullTitle(paper),
+        url: absoluteUrl(getResearchUrl(paper)),
+        datePublished: paper.datePublished,
+        author: { "@id": PERSON_ID },
+        sameAs: getDoiUrl(paper),
+      },
+    })),
+  },
+};
+---
+
+<DocsLayout
+  title="Research"
+  description={description}
+  canonical="/research"
+  ogTitle="Research – Anish Prashun"
+  ogImage="/og/research.png"
+  ogImageAlt="Research by Anish Prashun"
+  markdownPath="/research.md"
+  jsonLd={[
+    pageJsonLd,
+    getBreadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Research", path: "/research" },
+    ]),
+  ]}
+>
+  <div class="screen-line-after px-4">
+    <h1 class="text-3xl font-semibold">Research</h1>
+  </div>
+
+  <div class="screen-line-after p-4">
+    <p class="font-mono text-sm text-balance text-muted-foreground">
+      Independent technical reports on AI agent reliability, security and
+      privacy. Each report is archived on Zenodo with a DOI and comes with open
+      code, synthetic data and a single command that reproduces every number in
+      it.
+    </p>
+  </div>
+
+  <div>
+    {RESEARCH.map((paper) => (
+      <ResearchItem
+        paper={paper}
+        defaultOpen
+        className="screen-line-after border-b border-edge last:border-b-0"
+      />
+    ))}
+  </div>
+
+  <div class="h-4"></div>
+</DocsLayout>

@@ -6,6 +6,7 @@
   "trailingComma": "es5",
   "bracketSpacing": true,
   "plugins": [
+    "prettier-plugin-astro",
     "prettier-plugin-tailwindcss"
   ],
   "tailwindFunctions": [
@@ -13,5 +14,13 @@
     "cn",
     "cva"
   ],
-  "tailwindStylesheet": "./src/styles/globals.css"
+  "tailwindStylesheet": "./src/styles/globals.css",
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
 }

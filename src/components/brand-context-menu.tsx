@@ -1,9 +1,7 @@
-"use client";
-
 import { TypeIcon } from "lucide-react";
-import { useTheme } from "next-themes";
 import { toast } from "sonner";
 
+import { useTheme } from "@/lib/theme";
 import { copyText } from "@/utils/copy";
 
 import { AnishPrashunMark, getMarkSVG } from "./anishpras-mark";

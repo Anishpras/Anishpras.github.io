@@ -34,8 +34,8 @@
   --color-code-number: var(--code-number);
   --color-code-highlight: var(--code-highlight);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --shadow-popover: var(--shadow-popover);
 }
@@ -312,4 +312,32 @@
   [data-highlighted-line] {
     @apply bg-code-highlight;
   }
+}
+
+/* Astro Shiki (dual themes, defaultColor: false) */
+@layer components {
+  pre.astro-code {
+    @apply relative my-6 overflow-x-auto rounded-lg bg-code px-4 py-4 font-mono text-sm text-code-foreground;
+  }
+
+  pre.astro-code span {
+    color: var(--shiki-light);
+  }
+
+  .dark pre.astro-code span {
+    color: var(--shiki-dark);
+  }
+
+  [data-copy-code] {
+    @apply absolute top-2 right-2 rounded-md border border-edge bg-background/80 px-2 py-1 font-mono text-xs text-muted-foreground opacity-0 transition-opacity hover:text-foreground focus-visible:opacity-100;
+  }
+
+  .code-wrap:hover [data-copy-code] {
+    @apply opacity-100;
+  }
+}
+
+/* Static collapsibles (see components/ui/collapsible.tsx) */
+[data-collapsible-content][data-state="closed"] {
+  display: none;
 }

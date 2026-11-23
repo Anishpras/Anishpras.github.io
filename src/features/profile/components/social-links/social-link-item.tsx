@@ -1,6 +1,6 @@
 import { ArrowUpRightIcon } from "lucide-react";
-import Image from "next/image";
 
+import Image from "@/components/image";
 import type { SocialLink } from "@/features/profile/types/social-links";
 import { cn } from "@/lib/utils";
 

@@ -1,0 +1,50 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import BlogList from "@/components/blog-list.astro";
+import { getAllPosts } from "@/data/blog";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import {
+  BLOG_DESCRIPTION,
+  getActiveCategories,
+  getBlogJsonLd,
+  pageCount,
+  slicePage,
+} from "@/lib/blog-pages";
+
+export const getStaticPaths = (async () => {
+  const posts = await getAllPosts();
+  const last = pageCount(posts.length);
+  return Array.from({ length: Math.max(0, last - 1) }, (_, i) => ({
+    params: { page: String(i + 2) },
+  }));
+}) satisfies GetStaticPaths;
+
+const page = Number(Astro.params.page);
+const posts = await getAllPosts();
+const pagePosts = slicePage(posts, page);
+const categories = await getActiveCategories();
+const path = `/blog/page/${page}`;
+---
+
+<DocsLayout
+  title={`Blog – Page ${page}`}
+  description={`${BLOG_DESCRIPTION} Page ${page}.`}
+  canonical={path}
+  ogImage="/og/blog.png"
+  jsonLd={getBlogJsonLd(
+    pagePosts,
+    path,
+    `Blog – Page ${page}`,
+    BLOG_DESCRIPTION
+  )}
+>
+  <BlogList
+    heading={`Blog · Page ${page}`}
+    intro={BLOG_DESCRIPTION}
+    posts={pagePosts}
+    categories={categories}
+    currentPage={page}
+    lastPage={pageCount(posts.length)}
+  />
+</DocsLayout>

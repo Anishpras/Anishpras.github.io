@@ -1,0 +1,87 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.md",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/llms(-full)?\\.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/markdown; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/rss",
+      "headers": [
+        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/vcard",
+      "headers": [
+        { "key": "Content-Type", "value": "text/vcard; charset=utf-8" },
+        { "key": "Content-Disposition", "value": "attachment; filename=anishpras-vcard.vcf" }
+      ]
+    },
+    {
+      "source": "/(about|experience|projects|awards|certifications)\\.md",
+      "headers": [
+        { "key": "Link", "value": "<https://www.anishprashun.me/>; rel=\"canonical\"" }
+      ]
+    },
+    {
+      "source": "/research.md",
+      "headers": [
+        { "key": "Link", "value": "<https://www.anishprashun.me/research>; rel=\"canonical\"" }
+      ]
+    },
+    {
+      "source": "/blog.md",
+      "headers": [
+        { "key": "Link", "value": "<https://www.anishprashun.me/blog>; rel=\"canonical\"" }
+      ]
+    },
+    {
+      "source": "/blog/:slug.md",
+      "headers": [
+        { "key": "Link", "value": "<https://www.anishprashun.me/blog/:slug>; rel=\"canonical\"" }
+      ]
+    },
+    {
+      "source": "/research/:slug.md",
+      "headers": [
+        { "key": "Link", "value": "<https://www.anishprashun.me/research/:slug>; rel=\"canonical\"" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/feed", "destination": "/rss", "permanent": true },
+    { "source": "/rss.xml", "destination": "/rss", "permanent": true }
+  ]
+}

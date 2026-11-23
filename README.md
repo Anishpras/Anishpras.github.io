@@ -1,6 +1,6 @@
 # [anishprashun.me](https://anishprashun.me)
 
-A minimal portfolio, component registry, and blog to showcase my work as a Design Engineer.
+My portfolio, independent research, and a daily tech-analysis blog.
 
 Check out the live site: [anishprashun.me](https://anishprashun.me)
 
@@ -14,9 +14,9 @@ Check out the live site: [anishprashun.me](https://anishprashun.me)
 
 ### Tech Stack
 
-- Next.js 15
+- Astro 7 (static HTML, React islands only where interactive)
 - Tailwind CSS v4
-- shadcn/ui
+- shadcn/ui + Radix (islands)
 
 ### Featured
 
@@ -27,6 +27,7 @@ Check out the live site: [anishprashun.me](https://anishprashun.me)
 - AI-friendly [/llms.txt](https://llmstxt.org)
 - Spam-protected email
 - Installable PWA
+- Build-time OG images (satori + resvg)
 
 ### Blog
 
@@ -36,20 +37,28 @@ Check out the live site: [anishprashun.me](https://anishprashun.me)
 - RSS Feed for easy content distribution
 - Dynamic OG Images for rich previews
 
-### Component Registry
+### Daily analysis pipeline
 
-Easily build and distribute your own components, hooks, and pages using a custom registry powered by the [shadcn CLI](https://ui.shadcn.com/docs/cli).
+Every day at 12:30 UTC, `.github/workflows/daily-blog.yml` runs `scripts/daily-blog/run.ts`, which:
 
-Each component is well-documented through the Blog, featuring:
+1. Uses Claude with web search to pick the five biggest tech stories of the last 36 hours (AI, fintech, security, big tech, dev tools, chips, policy).
+2. Opens and verifies the sources, then writes each post in my voice, following `scripts/daily-blog/voice.md`.
+3. Extracts metadata (title, description, TL;DR, key takeaways, tags, sources) with structured outputs.
+4. Rejects weak posts with the quality gate in `scripts/daily-blog/quality.ts`, builds the site, and pushes.
 
-- **Live Preview**: Interactive component demos
-- **Code Snippets**: Readable and copyable examples
-- **Beautiful Code Blocks**: Styled for clarity and dark mode
-- **Command Blocks**: One-click copy for quick install commands (`pnpm`, `npm`, `yarn`, `bun`)
+Setup: add an `ANTHROPIC_API_KEY` repository secret. Run it by hand from the Actions tab ("Daily blog" → Run workflow) or locally with `ANTHROPIC_API_KEY=… pnpm blog:daily -- --dry-run`.
+
+To change how posts sound, edit `scripts/daily-blog/voice.md`.
 
 ## Development
 
-Please refer to the [Development Guide](./DEVELOPMENT.md) for more details.
+```bash
+nvm use            # Node 24
+pnpm install
+pnpm dev           # http://localhost:1408
+pnpm build && pnpm preview
+pnpm check-types && pnpm lint && pnpm validate:posts
+```
 
 ## License
 
@@ -64,7 +73,7 @@ Licensed under the [MIT license](./LICENSE).
 ## Acknowledgments
 
 - [React](https://react.dev)
-- [Next.js](https://nextjs.org)
+- [Astro](https://astro.build)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Radix UI](https://www.radix-ui.com)
 - [Motion](https://motion.dev)

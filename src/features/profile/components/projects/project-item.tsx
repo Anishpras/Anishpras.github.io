@@ -4,10 +4,10 @@ import {
   InfinityIcon,
   LinkIcon,
 } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 
 import { Icons } from "@/components/icons";
+import Image from "@/components/image";
 import { Markdown } from "@/components/markdown";
 import {
   Collapsible,

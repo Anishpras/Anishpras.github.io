@@ -1,5 +1,3 @@
-"use client";
-
 import { Tooltip as TooltipPrimitive } from "radix-ui";
 import * as React from "react";
 
@@ -56,6 +54,10 @@ const TooltipContent = ({
   </TooltipPrimitive.Portal>
 );
 
+/**
+ * CSS-only tooltip (hover/focus), so it works in static, non-hydrated HTML.
+ * The Radix primitives above remain available for interactive islands.
+ */
 function SimpleTooltip({
   children,
   content,
@@ -64,10 +66,15 @@ function SimpleTooltip({
   content: React.ReactNode;
 }) {
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
-      <TooltipContent>{content}</TooltipContent>
-    </Tooltip>
+    <span className="group/tooltip relative inline-flex">
+      {children}
+      <span
+        role="tooltip"
+        className="pointer-events-none invisible absolute bottom-full left-1/2 z-50 mb-2 w-max max-w-xs -translate-x-1/2 rounded-lg bg-primary px-3 py-1.5 font-mono text-xs text-primary-foreground opacity-0 transition-opacity group-focus-within/tooltip:visible group-focus-within/tooltip:opacity-100 group-hover/tooltip:visible group-hover/tooltip:opacity-100"
+      >
+        {content}
+      </span>
+    </span>
   );
 }
 

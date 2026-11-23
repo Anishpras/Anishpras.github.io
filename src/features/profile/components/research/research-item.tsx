@@ -5,9 +5,9 @@ import {
   ChevronsUpDownIcon,
   FileTextIcon,
 } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 
+import Link from "@/components/link";
 import { Markdown } from "@/components/markdown";
 import {
   Collapsible,

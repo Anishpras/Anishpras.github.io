@@ -106,6 +106,7 @@ function Separator() {
  */
 function getDmcaUrl() {
   const url =
+    import.meta.env.PUBLIC_DMCA_URL ||
     process.env.NEXT_PUBLIC_DMCA_URL ||
     "https://www.dmca.com/ProtectionPro.aspx";
   return /^https?:\/\//i.test(url) ? url : `https://${url.replace(/^\/+/, "")}`;

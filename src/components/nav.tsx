@@ -1,6 +1,6 @@
-import Link from "next/link";
 import React from "react";
 
+import Link from "@/components/link";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/types/nav";
 

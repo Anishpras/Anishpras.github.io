@@ -1,14 +1,10 @@
-"use client";
-
 import { useMotionValueEvent, useScroll } from "motion/react";
-import * as motion from "motion/react-m";
-import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 import { AnishPrashunMark } from "./anishpras-mark";
 
-export function SiteHeaderMark() {
-  const pathname = usePathname();
+export function SiteHeaderMark({ pathname }: { pathname: string }) {
   return pathname === "/" ? <AnishPrashunMarkMotion /> : <AnishPrashunMark />;
 }
 

@@ -1,8 +1,6 @@
-"use client";
-
 import { ChevronUpIcon } from "lucide-react";
 import { AnimatePresence, useMotionValueEvent, useScroll } from "motion/react";
-import * as motion from "motion/react-m";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";

@@ -1,27 +1,19 @@
-"use client";
-
 import { useCommandState } from "cmdk";
 import type { LucideProps } from "lucide-react";
 import {
   BriefcaseBusinessIcon,
   CircleUserIcon,
   CornerDownLeftIcon,
-  DownloadIcon,
   FileTextIcon,
   LetterTextIcon,
   MoonStarIcon,
   RssIcon,
   SunIcon,
   TextIcon,
-  TriangleDashedIcon,
-  TypeIcon,
 } from "lucide-react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { toast } from "sonner";
 
+import Image from "@/components/image";
 import {
   CommandDialog,
   CommandEmpty,
@@ -32,12 +24,11 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { SOCIAL_LINKS } from "@/features/profile/data/social-links";
+import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
-import type { Post } from "@/types/blog";
-import { copyText } from "@/utils/copy";
+import type { PostLink } from "@/types/blog";
 
-import { AnishPrashunMark, getMarkSVG } from "./anishpras-mark";
-import { getWordmarkSVG } from "./anishprashun-wordmark";
+import { AnishPrashunMark } from "./anishpras-mark";
 import { Icons } from "./icons";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
@@ -70,7 +61,7 @@ const MENU_LINKS: CommandLinkItem[] = [
   },
 ];
 
-const DAIFOLIO_LINKS: CommandLinkItem[] = [
+const PRASFOLIO_LINKS: CommandLinkItem[] = [
   {
     title: "About",
     href: "/#about",
@@ -120,12 +111,26 @@ const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
   openInNewTab: true,
 }));
 
-export function CommandMenu({ posts }: { posts: Post[] }) {
-  const router = useRouter();
+/** Fetched once, the first time the menu opens, so pages don't embed every post. */
+let postIndexPromise: Promise<PostLink[]> | undefined;
+function loadPostIndex() {
+  postIndexPromise ??= fetch("/blog/index.json")
+    .then((res) => (res.ok ? res.json() : []))
+    .catch(() => []);
+  return postIndexPromise;
+}
 
-  const { setTheme, resolvedTheme } = useTheme();
+export function CommandMenu() {
+  const [posts, setPosts] = useState<PostLink[]>([]);
+  const { setTheme } = useTheme();
 
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (open && posts.length === 0) {
+      loadPostIndex().then(setPosts);
+    }
+  }, [open, posts.length]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -154,23 +159,14 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
     return () => abortController.abort();
   }, []);
 
-  const handleOpenLink = useCallback(
-    (href: string, openInNewTab = false) => {
-      setOpen(false);
-
-      if (openInNewTab) {
-        window.open(href, "_blank", "noopener");
-      } else {
-        router.push(href);
-      }
-    },
-    [router]
-  );
-
-  const handleCopyText = useCallback((text: string, message: string) => {
+  const handleOpenLink = useCallback((href: string, openInNewTab = false) => {
     setOpen(false);
-    copyText(text);
-    toast.success(message);
+
+    if (openInNewTab) {
+      window.open(href, "_blank", "noopener");
+    } else {
+      window.location.assign(href);
+    }
   }, []);
 
   const handleThemeChange = useCallback(
@@ -181,13 +177,10 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
     [setTheme]
   );
 
-  const { blogLinks, componentLinks } = useMemo(
+  const { blogLinks } = useMemo(
     () => ({
       blogLinks: posts
-        .filter((post) => post.metadata?.category !== "components")
-        .map(postToCommandLinkItem),
-      componentLinks: posts
-        .filter((post) => post.metadata?.category === "components")
+        .filter((post) => post.category !== "components")
         .map(postToCommandLinkItem),
     }),
     [posts]
@@ -244,8 +237,8 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
           <CommandSeparator />
 
           <CommandLinkGroup
-            heading="Daifolio"
-            links={DAIFOLIO_LINKS}
+            heading="Prasfolio"
+            links={PRASFOLIO_LINKS}
             onLinkSelect={handleOpenLink}
           />
 
@@ -430,11 +423,11 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   );
 }
 
-function postToCommandLinkItem(post: Post): CommandLinkItem {
-  const isComponent = post.metadata?.category === "components";
+function postToCommandLinkItem(post: PostLink): CommandLinkItem {
+  const isComponent = post.category === "components";
 
   return {
-    title: post.metadata.title,
+    title: post.title,
     href: isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`,
     keywords: isComponent ? ["component"] : undefined,
   };

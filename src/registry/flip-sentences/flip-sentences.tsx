@@ -1,7 +1,5 @@
-"use client";
-
 import { AnimatePresence } from "motion/react";
-import * as motion from "motion/react-m";
+import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -49,7 +47,6 @@ export function FlipSentences({
       }
       abortController.abort();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sentences]);
 
   return (

@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { ArrowUpRightIcon } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 
 import { getIcon, Icons } from "@/components/icons";
+import Image from "@/components/image";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
