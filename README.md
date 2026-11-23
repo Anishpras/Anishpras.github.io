@@ -37,18 +37,13 @@ Check out the live site: [anishprashun.me](https://anishprashun.me)
 - RSS Feed for easy content distribution
 - Dynamic OG Images for rich previews
 
-### Daily analysis pipeline
+### Daily analysis posts
 
-Every day at 12:30 UTC, `.github/workflows/daily-blog.yml` runs `scripts/daily-blog/run.ts`, which:
+Five posts a day on the biggest stories in AI, fintech, security, big tech, dev tools, chips and policy. They're researched and written in a local Claude Code session on my machine (no CI job), following:
 
-1. Uses Claude with web search to pick the five biggest tech stories of the last 36 hours (AI, fintech, security, big tech, dev tools, chips, policy).
-2. Opens and verifies the sources, then writes each post in my voice, following `scripts/daily-blog/voice.md`.
-3. Extracts metadata (title, description, TL;DR, key takeaways, tags, sources) with structured outputs.
-4. Rejects weak posts with the quality gate in `scripts/daily-blog/quality.ts`, builds the site, and pushes.
-
-Setup: add an `ANTHROPIC_API_KEY` repository secret. Run it by hand from the Actions tab ("Daily blog" → Run workflow) or locally with `ANTHROPIC_API_KEY=… pnpm blog:daily -- --dry-run`.
-
-To change how posts sound, edit `scripts/daily-blog/voice.md`.
+- `scripts/daily-blog/RUNBOOK.md`: the daily steps
+- `scripts/daily-blog/voice.md`: voice, point of view, structure and hard rules
+- `scripts/daily-blog/quality.ts`: the quality gate (`pnpm validate:posts`)
 
 ## Development
 
